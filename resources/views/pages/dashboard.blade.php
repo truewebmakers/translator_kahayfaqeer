@@ -2,23 +2,7 @@
 @section('content')
 
 <div class="page-body">
-    <div class="container-fluid">
-      <div class="page-title">
-        <div class="row">
-          <div class="col-sm-6 col-12">
-            <h2>Default Dashboard</h2>
-            <p class="mb-0 text-title-gray">Welcome back! Let’s start from where you left.</p>
-          </div>
-          <div class="col-sm-6 col-12">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html"><i class="iconly-Home icli svg-color"></i></a></li>
-              <li class="breadcrumb-item">Dashboard</li>
-              <li class="breadcrumb-item active">Default</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
+    @include('breadcrumb');
     <!-- Container-fluid starts-->
     <div class="container-fluid default-dashboard">
       <div class="row">
@@ -29,7 +13,7 @@
             </div>
             <div class="card-body">
               <div class="d-flex align-center">
-                <h1>Hello, Amirreza  <img src="../assets/images/dashboard-1/hand.png" alt=""/></h1>
+                <h1>Hello, {{( Auth::check()) ? ucwords(Auth::user()->name)  : ''}}  <img src="../assets/images/dashboard-1/hand.png" alt=""/></h1>
               </div>
               <p> Welcome back! Let’s start from where you left.</p>
               <div class="d-flex align-center justify-content-between"><a class="btn btn-pill btn-primary" href="">Whats New!</a><span>

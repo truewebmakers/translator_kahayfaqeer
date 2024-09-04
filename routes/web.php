@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -23,4 +23,5 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('dashboard', [AuthController::class, 'showDashboard'])->name('admin.dashboard');
+    Route::resource('permissions',PermissionController::class);
 });

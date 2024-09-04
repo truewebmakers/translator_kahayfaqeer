@@ -14,8 +14,6 @@
 <!-- config-->
 <script src="{{ asset('assets/js/config.js')}}"></script>
 <!-- apex-->
-<script src="{{ asset('assets/js/chart/apex-chart/apex-chart.js')}}"></script>
-<script src="{{ asset('assets/js/chart/apex-chart/stock-prices.js')}}"></script>
 <!-- scrollbar-->
 <script src="{{ asset('assets/js/scrollbar/simplebar.js')}}"></script>
 <script src="{{ asset('assets/js/scrollbar/custom.js')}}"></script>
@@ -37,8 +35,8 @@
 <!-- page_tilt-->
 <script src="{{ asset('assets/js/animation/tilt/tilt-custom.js')}}"></script>
 <!-- dashboard_1-->
-<script src="{{ asset('assets/js/dashboard/dashboard_1.js')}}"></script>
 <!-- custom script -->
 <script src="{{ asset('assets/js/script.js')}}"></script>
+
 </body>
 </html>
