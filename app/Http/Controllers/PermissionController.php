@@ -15,6 +15,7 @@ class PermissionController extends Controller
     {
         // Retrieve all permissions
         $permissions = Permission::all();
+
         return view('roles-permission.permission.index', compact('permissions'));
     }
 
@@ -74,11 +75,9 @@ class PermissionController extends Controller
         $request->validate([
             'name' => 'required|string|unique:permissions,name,' . $id,
         ]);
-
         // Update the permission
-        $permission = Permission::findOrFail($id);
-        $permission->name = $request->input('name');
-        $permission->save();
+          Permission::findOrFail($id)->update(['name' => $request->input('name')]);
+
 
         return redirect()->route('permissions.index')->with('success', 'Permission updated successfully.');
     }

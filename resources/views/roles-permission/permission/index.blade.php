@@ -24,7 +24,7 @@
                                             <tbody>
                                                 @foreach($permissions as $permission)
                                                 <tr>
-                                                    <td>{{ $permission->name }}</td>
+                                                    <td>{{ ($permission) ? $permission->name :''}}</td>
                                                     <td>
                                                         <ul class="action">
                                                             <li class="edit">
