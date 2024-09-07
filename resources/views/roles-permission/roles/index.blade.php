@@ -12,12 +12,11 @@
                         <div class="card-header pb-0 card-no-border">
 
                             <div class="card-body">
-
+                                @include('alerts')
                                 <div class="table-responsive">
-                                    @include('alerts')
                                     <div id="basic-9_wrapper" class="dataTables_wrapper">
 
-                                        <a class="btn btn-primary btn-sm" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-primary btn-sm" href="{{ route('permissions.create')}}">Add</a>
+
                                         <table class="display" id="basic-9">
                                             <thead>
                                                 <tr>
@@ -26,18 +25,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($permissions as $permission)
+                                                @foreach($roles as $role)
                                                 <tr>
-                                                    <td>{{ ($permission) ? $permission->name :''}}</td>
+                                                    <td>{{ ($role) ? $role->name :''}}</td>
                                                     <td>
                                                         <ul class="action">
                                                             <li class="edit">
-                                                                <a href="{{ route('permissions.edit', $permission->id) }}">
+                                                                <a href="{{ route('roles.edit', $role->id) }}">
                                                                     <i class="icon-pencil-alt"></i>
                                                                 </a>
                                                             </li>
                                                             <li class="delete">
-                                                                <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" style="display:inline;">
+                                                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display:inline;">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" style="border: none; background: none; cursor: pointer;">
