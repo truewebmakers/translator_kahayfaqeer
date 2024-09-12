@@ -11,7 +11,7 @@
             <li class="sidebar-list"> <i class="fa-solid fa-thumbtack"></i>
                 <a class="sidebar-link" href="/">
                     <svg class="stroke-icon">
-                        <use href="../assets/svg/iconly-sprite.svg#Message"></use>
+                        <use href="{{ asset('assets/svg/iconly-sprite.svg#Message') }}"></use>
                     </svg>
                     <h6 class="f-w-600">Dashboards</h6>
                 </a>
@@ -31,6 +31,7 @@
                     <h6 class="f-w-600">Users</h6><i class="iconly-Arrow-Right-2 icli"></i>
                 </a>
                 <ul class="sidebar-submenu">
+
                     <li class=""><a class="submenu-title" href="javascript:void(0)">Permissions<i
                                 class="iconly-Arrow-Right-2 icli"> </i></a>
                         <ul class="according-submenu" style="display: none;">
@@ -45,12 +46,34 @@
                             <li> <a href="{{ route('roles.index') }}">List</a></li>
                         </ul>
                     </li>
+                    <li class=""><a class="submenu-title" href="javascript:void(0)">Users<i
+                                class="iconly-Arrow-Right-2 icli"> </i></a>
+                        <ul class="according-submenu" style="display: none;">
+                            <li> <a href="{{ route('users.create') }}">Add</a></li>
+                            <li> <a href="{{ route('users.index') }}">List</a></li>
+                        </ul>
+                    </li>
 
 
                 </ul>
 
 
             </li>
+
+            <li class="sidebar-list"> <i class="fa-solid fa-thumbtack"></i><a class="sidebar-link"
+                    href="javascript:void(0)">
+                    <svg class="stroke-icon">
+                        <use href="{{ asset('assets/svg/iconly-sprite.svg#Chat') }}"></use>
+                    </svg>
+                    <h6 class="f-w-600">Books</h6><i class="iconly-Arrow-Right-2 icli"> </i>
+                </a>
+                <ul class="sidebar-submenu" style="display: none;">
+                    <li> <a href="{{ route('book.create') }}">Add</a></li>
+                    <li> <a href="{{ route('book.index') }}">List</a></li>
+                </ul>
+            </li>
+
+
 
 
 

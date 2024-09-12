@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\{PermissionController,RoleController};
+use App\Http\Controllers\{PermissionController,RoleController,BookTranslationController,UserController};
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -23,7 +23,22 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('dashboard', [AuthController::class, 'showDashboard'])->name('admin.dashboard');
-    Route::resource('permissions',PermissionController::class);
+    // Route::resource('permissions',PermissionController::class);
+    // Route::resource('roles', RoleController::class);
+
     Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('permissions', PermissionController::class);
+
+    Route::get('/book/create',[BookTranslationController::class, 'create'])->name('book.create');
+    Route::get('/book/index',[BookTranslationController::class, 'index'])->name('book.index');
+    Route::post('/book/store',[BookTranslationController::class, 'store'])->name('book.store');
+    Route::post('/book/update/{id}',[BookTranslationController::class, 'update'])->name('book.update');
+    Route::get('/book/edit/{id}',[BookTranslationController::class, 'edit'])->name('book.edit');
+    Route::get('/book/comment/{id}',[BookTranslationController::class, 'book_comment'])->name('book.comment');
+    Route::post('/book/comment/store/{id}',[BookTranslationController::class, 'storeComment'])->name('book.comment.store');
+    Route::post('/book/comment/status/update/{id}',[BookTranslationController::class, 'statusUpdate'])->name('book.comment.status.update');
+
+
 
 });

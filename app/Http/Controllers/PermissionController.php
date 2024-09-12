@@ -1,96 +1,91 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+      public function index()
     {
-        // Retrieve all permissions
-        $permissions = Permission::all();
+        $permission= Permission::latest()->get();
 
-        return view('roles-permission.permission.index', compact('permissions'));
+        return view('permission.index',['permissions'=>$permission]);
     }
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        // Show form to create a new permission
-        $permission =  new \stdClass();
-
-        return view('roles-permission.permission.create',compact('permission'));
+        return view('permission.create');
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // Validate request
+        // validation
         $request->validate([
-            'name' => 'required|string|unique:permissions,name',
+            'name'=>'required',
         ]);
-
-        // Create a new permission
-        Permission::create(['name' => $request->input('name')]);
-
-        return redirect()->route('permissions.index')->with('success', 'Permission created successfully.');
+        $permission = Permission::create(['name'=>$request->name]);
+        return redirect()->back()->withSuccess('Permission created !!!');
     }
 
     /**
      * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function show(string $id)
+    public function show($id)
     {
-        // Retrieve the specified permission
-        $permissions = Permission::findOrFail($id);
-        return view('roles-permission.permission.index', compact('permissions'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function edit(string $id)
+    public function edit(Permission $permission)
     {
-        // Retrieve the specified permission
-        $permission = Permission::findOrFail($id);
-        return view('roles-permission.permission.create', compact('permission'));
+       return view('permission.create',['permission' => $permission]);
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Permission $permission)
     {
-        // Validate request
-        $request->validate([
-            'name' => 'required|string|unique:permissions,name,' . $id,
-        ]);
-        // Update the permission
-          Permission::findOrFail($id)->update(['name' => $request->input('name')]);
-
-
-        return redirect()->route('permissions.index')->with('success', 'Permission updated successfully.');
+        $permission->update(['name'=>$request->name]);
+        return redirect()->back()->withSuccess('Permission updated !!!');
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy(Permission $permission)
     {
-        // Delete the specified permission
-        $permission = Permission::findOrFail($id);
         $permission->delete();
-
-        return redirect()->route('permissions.index')->with('success', 'Permission deleted successfully.');
+        return redirect()->back()->withSuccess('Permission deleted !!!');
     }
 }

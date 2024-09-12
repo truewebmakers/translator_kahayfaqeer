@@ -38,6 +38,11 @@
 <!-- custom script -->
 <script src="{{ asset('assets/js/script.js')}}"></script>
 
+<script type="text/javascript" src="{{ asset('assets/css/richtexteditor/rte.js') }}"></script>
+<script type="text/javascript" src='{{ asset('assets/css/richtexteditor/all_plugins.js') }}'></script>
+
+
+
  @yield('page_script')
 
 </body>

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('book_translation_comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('book_translation_id');
-            $table->foreign('book_translation_id')->references('id')->on('book_translations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('book_translation_id')->references('id')->on('book_translations');
             $table->text('comment')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->enum('type',['comment','reply'])->default('comment');
             $table->timestamps();
         });
