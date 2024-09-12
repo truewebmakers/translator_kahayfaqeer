@@ -65,7 +65,6 @@ class BookTranslationController extends Controller
 
         return redirect()->back()->with('success','Book Created Successfully');
     }
-
     public function edit($id){
         $book = BookTranslation::findOrFail($id);
 
