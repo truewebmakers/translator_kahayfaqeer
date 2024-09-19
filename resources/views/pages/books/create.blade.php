@@ -71,7 +71,7 @@
                                             <h5 class="f-w-600 mb-2">Upload Audio file</h5>
 
                                             <div class="col-12">
-                                                <input class="form-control" id="formFile" type="file" required="">
+                                                <input class="form-control" id="formFile" type="file" name="urdu_audio">
                                               </div>
                                             {{-- urdu_audio --}}
                                         </div>

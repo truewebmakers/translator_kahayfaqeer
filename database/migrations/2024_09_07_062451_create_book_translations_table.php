@@ -21,9 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('page_number')->default(0);
             $table->unsignedBigInteger('sentence')->default(0);
             $table->longText('text')->nullable();
-            $table->enum('text_status',['approved_without_comment','approved_with_comment','reject_revise_and_resubmit','under_review','in-process'])->default('in-process');
             $table->string('urdu_audio')->nullable();
-            $table->enum('urdu_audio_status',['approved_without_comment','approved_with_comment','reject_revise_and_resubmit','under_review','in-process'])->default('in-process');
             $table->timestamps();
         });
     }

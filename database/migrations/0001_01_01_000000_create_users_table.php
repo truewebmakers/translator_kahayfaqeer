@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('profile_pic')->nullable();
             $table->string('status')->nullable();
+            $table->string('proof_read_user',50)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

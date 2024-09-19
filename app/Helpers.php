@@ -2,22 +2,19 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
-function Breadcrumbs()
+function CurrentUserRole()
 {
-    $segments = Request::segments();
-    $breadcrumbs = [];
-    $url = '';
+    $user =  User::find(Auth::id());
+    return Auth::check() ? $user->getRoleNames() : collect();
+}
 
-    foreach ($segments as $segment) {
-        $url .= '/' . $segment;
-        $breadcrumbs[] = [
-            'title' => ucfirst($segment),
-            'url' => $url,
-        ];
-    }
 
-    return $breadcrumbs;
+function UserCan($permission): mixed
+{
+    $user =  User::find(Auth::id());
+    return Auth::check() ? $user->can($permission) : false;
 }

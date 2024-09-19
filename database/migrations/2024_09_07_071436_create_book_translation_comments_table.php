@@ -19,6 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->enum('type',['comment','reply'])->default('comment');
+            $table->string('proof_read_user',5)->nullable();
+            $table->enum('text_status',['approved_without_comment','approved_with_comment','reject_revise_and_resubmit','under_review','in-process'])->default('in-process');
+            $table->enum('urdu_audio_status',['approved_without_comment','approved_with_comment','reject_revise_and_resubmit','under_review','in-process'])->default('in-process');
             $table->timestamps();
         });
     }

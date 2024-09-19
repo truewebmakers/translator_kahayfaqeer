@@ -16,15 +16,17 @@
                 <h1>Hello, {{( Auth::check()) ? ucwords(Auth::user()->name)  : ''}}  <img src="../assets/images/dashboard-1/hand.png" alt=""/></h1>
               </div>
               <p> Welcome back! Let’s start from where you left.</p>
-              <div class="d-flex align-center justify-content-between"><a class="btn btn-pill btn-primary" href="">Whats New!</a><span>
-                  <svg class="stroke-icon">
-                    <use href="../assets/svg/icon-sprite.svg#watch"></use>
-                  </svg> 11:14 AM</span></div>
+              {{-- <div class="d-flex align-center justify-content-between"><a class="btn btn-pill btn-primary" href="">Whats New!</a> --}}
+                <span id="timeSpan">
+
+                  </span>
+
+                </div>
             </div>
           </div>
         </div>
 
-        <div class="col-xxl-6 col-xl-8 proorder-xxl-8 col-lg-12 col-md-6 box-col-7">
+        <div class="col-xxl-6 col-xl-8 proorder-xxl-8 col-lg-12 col-md-6 box-col-7 d-none">
           <div class="card">
             <div class="card-header card-no-border pb-0">
               <h3>Transition History</h3>
@@ -199,3 +201,28 @@
 
   @endsection
 
+@section('page_script')
+<script>
+    // Function to update the time
+    function updateTime() {
+        console.log("asd")
+      const timeSpan = document.getElementById('timeSpan');
+      const now = new Date();
+      const options = { hour: '2-digit', minute: '2-digit', hour12: false };
+      const timeString = now.toLocaleTimeString([], options);
+
+      // Update the text content with the current time
+      timeSpan.innerHTML = `
+        <svg class="stroke-icon">
+          <use href="../assets/svg/icon-sprite.svg#watch"></use>
+        </svg> ${timeString}`;
+    }
+
+    // Update the time every second
+    setInterval(updateTime, 1000);
+
+    // Initial call to display the time immediately
+    updateTime();
+  </script>
+
+  @endsection

@@ -21,7 +21,7 @@ Route::middleware('guest')->prefix('auth')->group(function () {
 });
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [AuthController::class, 'showDashboard'])->name('admin.dashboard');
     // Route::resource('permissions',PermissionController::class);
     // Route::resource('roles', RoleController::class);
@@ -34,6 +34,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/book/index',[BookTranslationController::class, 'index'])->name('book.index');
     Route::post('/book/store',[BookTranslationController::class, 'store'])->name('book.store');
     Route::post('/book/update/{id}',[BookTranslationController::class, 'update'])->name('book.update');
+    Route::post('/book/delete/{id}',[BookTranslationController::class, 'delete'])->name('book.delete');
     Route::get('/book/edit/{id}',[BookTranslationController::class, 'edit'])->name('book.edit');
     Route::get('/book/comment/{id}',[BookTranslationController::class, 'book_comment'])->name('book.comment');
     Route::post('/book/comment/store/{id}',[BookTranslationController::class, 'storeComment'])->name('book.comment.store');

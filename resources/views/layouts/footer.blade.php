@@ -45,5 +45,7 @@
 
  @yield('page_script')
 
+
+
 </body>
 </html>

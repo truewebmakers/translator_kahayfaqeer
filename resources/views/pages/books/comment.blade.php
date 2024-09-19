@@ -1,48 +1,55 @@
 @extends('layouts.app')
 @section('content')
-<style>
-    div#comment-box p {
-    padding: 12px;
-}
-button#btnPostReplay {
-    float: right;
-}
-.card-header.card-no-border.pb-0.custom-head {
-    display: flex;
-    justify-content: space-between;
-}
+    <style>
+        div#comment-box p {
+            padding: 12px;
+        }
 
-option.cl-approved_without_comment {
-    color:#458e88
-}
-option.cl-approved_with_comment {
-    color: lightgreen;
-}
-option.cl-reject_revise_and_resubmit {
-    color: black;
-}
-option.cl-under_review {
-    color: #e19924;
-}
-option.cl-in-process {
-    color: orangered;
-}
+        button#btnPostReplay {
+            float: right;
+        }
+
+        .card-header.card-no-border.pb-0.custom-head {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        option.cl-approved_without_comment {
+            color: #458e88
+        }
+
+        option.cl-approved_with_comment {
+            color: lightgreen;
+        }
+
+        option.cl-reject_revise_and_resubmit {
+            color: black;
+        }
+
+        option.cl-under_review {
+            color: #e19924;
+        }
+
+        option.cl-in-process {
+            color: orangered;
+        }
     </style>
     <div class="page-body">
         @include('breadcrumb')
         <!-- Container-fluid starts-->
 
 
-        <div class="container-fluid" id="container" data-bookid="{{$book->id}}">
+        <div class="container-fluid" id="container" data-bookid="{{ $book->id }}">
             <div class="row">
                 <div class="col-sm-8">
                     <div class="card">
                         <div class="card-header card-no-border pb-0 custom-head">
                             <h3 class="mb-0">Book Text</h3>
-                            <a href="{{route('book.edit',$book->id)}}" class="btn btn-warning form-btn float-right mr-2">Edit</a>
+                            <a href="{{ route('book.edit', $book->id) }}"
+                                class="btn btn-warning form-btn float-right mr-2">Edit</a>
                         </div>
                         <div class="card-body">
-                            <p> {!!$book->text!!}</p>
+                            <p> {!! $book->text !!}</p>
                         </div>
                         <div class="p-3 bg-primary">
                             <button id="btnPostReplay" class="btn btn-outline-white rounded-0 fa-lg">
@@ -70,18 +77,17 @@ option.cl-in-process {
                         </div>
                         {{-- Coment Added  --}}
                         <div id="comment-box">
-                            @foreach($book->comment as $comment)
-
-                            <div class="card-body mt-3">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <h5 class="f-w-600">{{ $comment->type }}</h5>
-                                        {!!$comment->comment!!}
+                            @foreach ($book->comment as $comment)
+                                <div class="card-body mt-3">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <h5 class="f-w-600">{{ $comment->type }}</h5>
+                                            {!! $comment->comment !!}
+                                        </div>
+                                        <p> {{ $comment->created_at->format('d M Y h:i A') }} </p>
                                     </div>
-                                    <p> {{ $comment->created_at->format('d M Y h:i A') }} </p>
                                 </div>
-                            </div>
-                            <hr>
+                                <hr>
                             @endforeach
 
                         </div>
@@ -107,7 +113,9 @@ option.cl-in-process {
                             <h3 class="mb-0">Book Details</h3>
                             <select class="form-select mt-2" id="status-update">
                                 @foreach ($statusArr as $val => $status)
-                                    <option @if ($val == $book->text_status) class="{{'cl-'.$val}} selected" value="{{ $val }}" @else class="{{'cl-'.$val}}" value="{{ $val }}" @endif  @if ($val == $book->text_status) selected @endif>
+                                    <option
+                                        @if ($val == $book->text_status) class="{{ 'cl-' . $val }} selected" value="{{ $val }}" @else class="{{ 'cl-' . $val }}" value="{{ $val }}" @endif
+                                        @if ($val == $book->text_status) selected @endif>
                                         Status : {{ $status }}</option>
                                 @endforeach
 
@@ -163,7 +171,7 @@ option.cl-in-process {
                 data: {
                     book_translation_id: $("#container").attr('data-bookid'),
                     comment: getHtml,
-                    type : 'comment',
+                    type: 'comment',
 
                 },
                 success: function(response) {
@@ -203,23 +211,23 @@ option.cl-in-process {
             if (confirm("You want to change status")) {
 
                 $.ajax({
-                url: urll,
-                type: 'POST',
-                headers: {
-                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    text_status: $(this).val(),
+                    url: urll,
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        text_status: $(this).val(),
 
-                },
-                success: function(response) {
-                    alert("status update")
-                    location.reload();
-                },
-                error: function(xhr, status, error) {
+                    },
+                    success: function(response) {
+                        alert("status update")
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
 
-                }
-            });
+                    }
+                });
 
             }
             return false

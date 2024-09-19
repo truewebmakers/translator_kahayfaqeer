@@ -35,10 +35,8 @@ class DatabaseSeeder extends Seeder
 
         $user->assignRole([$role->id]);
         $roles = [
-            'Tester1',
-            'Tester2',
-            'Tester3',
-            'Tester4',
+            'proof_reader',
+            ''
         ];
     }
 

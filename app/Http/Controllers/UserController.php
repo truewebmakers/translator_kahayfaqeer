@@ -76,6 +76,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required',
+            'proof_read_user' => 'required',
 
         ]);
 
@@ -83,14 +84,13 @@ class UserController extends Controller
         $input = $request->all();
 
         if ($request->hasFile('profile_pic')) {
-
             $image = $request->file('profile_pic');
             $imageName = time() . 'profile_pic.' . $image->getClientOriginalExtension();
-            Storage::disk('public')->put('images/' . $imageName, file_get_contents($image));
-
+            Storage::disk('s3')->put('images/' . $imageName, file_get_contents($image));
             $input['profile_pic'] = $imageName;
-            // $image->move(public_path('images'), $imageName);
         }
+
+
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
@@ -128,6 +128,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'roles' => 'required',
+            'proof_read_user' => 'required',
         ]);
 
 
@@ -141,7 +142,7 @@ class UserController extends Controller
         if ($request->hasFile('profile_pic')) {
             $image = $request->file('profile_pic');
             $imageName = time() . 'profile_pic.' . $image->getClientOriginalExtension();
-            Storage::disk('s3_general')->put('images/' . $imageName, file_get_contents($image));
+            Storage::disk('s3')->put('images/' . $imageName, file_get_contents($image));
             $input['profile_pic'] = $imageName;
             // $image->move(public_path('images'), $imageName);
         }

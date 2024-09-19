@@ -1,3 +1,8 @@
+@php
+    use App\Helpers\UserHelper;
+
+@endphp
+
 <aside class="page-sidebar">
     <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
     <div class="main-sidebar" id="main-sidebar">
@@ -23,6 +28,7 @@
                     <h5 class="f-w-700 sidebar-title pt-3">Application</h5>
                 </div>
             </li>
+            @if( UserHelper::userCan(['create_user', 'edit_user','delete_user','update_user'], false))
             <li class="sidebar-list"> <i class="fa-solid fa-thumbtack"></i><a class="sidebar-link"
                     href="javascript:void(0)">
                     <svg class="stroke-icon">
@@ -59,7 +65,8 @@
 
 
             </li>
-
+            @endif
+            @if( UserHelper::userCan(['create_book_sentence', 'delete_book_sentence','read_book_sentence','update_book_sentence'], false))
             <li class="sidebar-list"> <i class="fa-solid fa-thumbtack"></i><a class="sidebar-link"
                     href="javascript:void(0)">
                     <svg class="stroke-icon">
@@ -72,6 +79,7 @@
                     <li> <a href="{{ route('book.index') }}">List</a></li>
                 </ul>
             </li>
+            @endif
 
 
 
