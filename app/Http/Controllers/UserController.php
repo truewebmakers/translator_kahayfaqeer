@@ -77,6 +77,7 @@ class UserController extends Controller
             'password' => 'required|same:confirm-password',
             'roles' => 'required',
             'proof_read_user' => 'required',
+            'language' => 'required'
 
         ]);
 
@@ -129,6 +130,7 @@ class UserController extends Controller
             'email' => 'required|email',
             'roles' => 'required',
             'proof_read_user' => 'required',
+            'language' => 'required'
         ]);
 
 

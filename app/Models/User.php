@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'proof_read_user',
         'profile_pic',
-        'status'
+        'status',
+        'language'
     ];
 
     /**
