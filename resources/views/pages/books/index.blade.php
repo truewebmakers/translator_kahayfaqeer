@@ -16,10 +16,10 @@
             padding: 10px;
         }
     </style>
-@php
-    use App\Helpers\UserHelper;
-    $role= UserHelper::userRole();
-@endphp
+    @php
+        use App\Helpers\UserHelper;
+        $role = UserHelper::userRole();
+    @endphp
     <div class="page-body">
         @include('breadcrumb')
         <!-- Container-fluid starts-->
@@ -43,6 +43,7 @@
                                             <th>Text</th>
                                             <th>Comment</th>
                                             <th class="text-center">Book Status</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,33 +67,41 @@
                                                     {!! $listing->text !!}
                                                 </td>
                                                 <td>
-                                                    @if (!empty($listing->comment))
-                                                        <form action="{{ route('book.comment.store', $listing->id) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            <input type="hidden" name="comment_id"
-                                                                value="{{ $listing->comment->id }}">
-                                                            <input type="hidden" name="book_translation_id"
-                                                                value="{{ $listing->id }}">
-                                                            <input type="hidden" name="type" value="comment">
-                                                            <textarea class="form-control" name="comment">{{ $listing->comment->comment }}</textarea>
-                                                            <button class="badge badge-success mt-1" type="submit"
-                                                                style="float: inline-end"><i
-                                                                    class="fa-solid fa-check"></i></button>
-                                                        </form>
-                                                    @else
-                                                        <form action="{{ route('book.comment.store', $listing->id) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            <input type="hidden" name="comment_id" value="">
-                                                            <input type="hidden" name="book_translation_id"
-                                                                value="{{ $listing->id }}">
-                                                            <input type="hidden" name="type" value="comment">
-                                                            <textarea class="form-control" name="comment"> </textarea>
-                                                            <button class="badge badge-success mt-1" type="submit"
-                                                                placeholder="comment" style="float: inline-end"><i
-                                                                    class="fa-solid fa-check"></i></button>
-                                                        </form>
+                                                    @if (UserHelper::userCan(['create_comment','update_comment','read_comment'],false))
+                                                        @if (!empty($listing->comment))
+                                                            <form action="{{ route('book.comment.store', $listing->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                <input type="hidden" name="comment_id"
+                                                                    value="{{ $listing->comment->id }}">
+                                                                <input type="hidden" name="book_translation_id"
+                                                                    value="{{ $listing->id }}">
+                                                                <input type="hidden" name="type" value="comment">
+                                                                <textarea class="form-control" name="comment">{{ $listing->comment->comment }}</textarea>
+
+                                                                @if (UserHelper::userCan(['create_comment','update_comment']))
+                                                                 <button class="badge badge-success mt-1" type="submit"
+                                                                    style="float: inline-end"><i
+                                                                        class="fa-solid fa-check"></i></button>
+                                                                @endif
+                                                            </form>
+                                                        @else
+                                                            <form action="{{ route('book.comment.store', $listing->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                <input type="hidden" name="comment_id" value="">
+                                                                <input type="hidden" name="book_translation_id"
+                                                                    value="{{ $listing->id }}">
+                                                                <input type="hidden" name="type" value="comment">
+                                                                <textarea class="form-control" name="comment"> </textarea>
+
+                                                                @if (UserHelper::userCan(['create_comment','update_comment']))
+                                                                <button class="badge badge-success mt-1" type="submit"
+                                                                    placeholder="comment" style="float: inline-end"><i
+                                                                        class="fa-solid fa-check"></i></button>
+                                                                @endif
+                                                            </form>
+                                                        @endif
                                                     @endif
 
                                                 </td>
@@ -134,6 +143,21 @@
                                                                 @endif
                                                             </div>
                                                         </div>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if (UserHelper::userCan(['update_book_sentence']))
+                                                        <a class="btn btn-primary"
+                                                            href="{{ route('book.edit', $listing->id) }}">Edit</a>
+                                                    @endif
+                                                    @if (UserHelper::userCan(['delete_book_sentence']))
+                                                        <form method="POST"
+                                                            action="{{ route('book.delete', $listing->id) }}"
+                                                            style="display:inline">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
                                                     @endif
                                                 </td>
 

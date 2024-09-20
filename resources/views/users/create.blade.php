@@ -83,25 +83,25 @@
                                         </select>
                                    </div>
                                 </div>
+                                @php
 
+                                $languageArr = [
+                                    'Urdu',
+                                    'English',
+                                    'Arabic',
+                                    'Hindi',
+                                    'Indonesian',
+                                    'Bengali',
+                                    'Persian',
+                                    'Turkish',
+                                ];
+
+                            @endphp
 
                                 <div class="col-md-6">
-                                    <div class="input-group">
+                                    <div class="input-select">
                                         <label class="form-label" for="name">Language</label>
-                                        @php
 
-                                            $languageArr = [
-                                                'Urdu',
-                                                'English',
-                                                'Arabic',
-                                                'Hindi',
-                                                'Indonesian',
-                                                'Bengali',
-                                                'Persian',
-                                                'Turkish',
-                                            ];
-
-                                        @endphp
                                         <select  name="language" class="form-select mt-2" id="lang-update">
                                             @foreach ($languageArr as $val => $lang)
                                                 <option
