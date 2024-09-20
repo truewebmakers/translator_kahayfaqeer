@@ -36,16 +36,33 @@ class DatabaseSeeder extends Seeder
         $user->assignRole([$role->id]);
         $roles = [
             'proof_reader',
-            ''
+            'editor'
         ];
+        foreach ($roles as $role) {
+            $r = Role::create(['name' => $role]);
+            $permissions = Permission::pluck('id','id')->all();
+
+            $r->syncPermissions($permissions);
+
+            $user->assignRole([$r->id]);
+        }
+
     }
 
     public function PermissionSeeder(){
         $permissions = [
-            'create',
-            'read',
-            'update',
-            'delete',
+            'create_book_sentence',
+            'read_book_sentence',
+            'update_book_sentence',
+            'delete_book_sentence',
+            'create_comment',
+            'read_comment',
+            'update_comment',
+            'delete_comment',
+            'create_user',
+            'read_user',
+            'update_user',
+            'delete_user',
         ];
 
         foreach ($permissions as $permission) {
