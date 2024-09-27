@@ -30,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('permissions', PermissionController::class);
 
+    Route::post('/upload-temp',[UserController::class, 'uploadImage'])->name('upload.image');
+
+
     Route::get('/book/create',[BookTranslationController::class, 'create'])->name('book.create');
     Route::get('/book/index',[BookTranslationController::class, 'index'])->name('book.index');
     Route::post('/book/store',[BookTranslationController::class, 'store'])->name('book.store');

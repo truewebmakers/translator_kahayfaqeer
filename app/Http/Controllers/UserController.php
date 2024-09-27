@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Log;
 
 
 
-
-
 class UserController extends Controller
 {
     /**
@@ -31,21 +29,50 @@ class UserController extends Controller
     //      $this->middleware('permission:user-management-access', ['only' => ['index','store','list','destroy','edit','update']]);
     // }
 
-    public function updateStatus(Request $request)
-    {
-        $user = Auth::user();
-        $status = $request->input('status');
-        $site_admin_id = $request->input('site_admin_id');
-        $user->status = $status;
-        try {
-            $event =  event(new UserNotification($status, $site_admin_id));
-        } catch (\Exception $e) {
-            Log::error("isue in ebve" . $e->getMessage());
+    // public function updateStatus(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     $status = $request->input('status');
+    //     $site_admin_id = $request->input('site_admin_id');
+    //     $user->status = $status;
+    //     try {
+    //         $event =  event(new UserNotification($status, $site_admin_id));
+    //     } catch (\Exception $e) {
+    //         Log::error("isue in ebve" . $e->getMessage());
+    //     }
+
+    //     $user->save();
+    //     return response()->json(['message' => 'Status updated successfully']);
+    // }
+
+
+
+
+public function uploadImage(Request $request)
+{
+
+    try {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10000', // Adjust validation as needed
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            $file = file_get_contents($request->file(key: 'image'));
+
+            $path = Storage::disk('s3')->putFileAs('avatars', $request->file(key: 'image'));
+            echo "<prE>"; print_r(value: $path); die;
+            return response()->json(['url' => Storage::disk('s3')->url($path)]);
         }
 
-        $user->save();
-        return response()->json(['message' => 'Status updated successfully']);
+
+    } catch (\Throwable $th) {
+        throw $th;
+        return response()->json(['error' => 'File not uploaded'], 400);
     }
+
+}
+
 
 
     public function index(Request $request)

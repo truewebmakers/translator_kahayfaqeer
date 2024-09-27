@@ -2,9 +2,13 @@
 @section('content')
 
 <div class="page-body">
-    @include('breadcrumb');
+    @include('breadcrumb')
     <!-- Container-fluid starts-->
     <div class="container-fluid default-dashboard">
+
+
+
+
       <div class="row">
         <div class="col-xl-6 proorder-xxl-1 col-sm-6 box-col-6">
           <div class="card welcome-banner">
@@ -25,6 +29,12 @@
             </div>
           </div>
         </div>
+
+        <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="image" required>
+            <button type="submit">Upload</button>
+        </form>
 
         <div class="col-xxl-6 col-xl-8 proorder-xxl-8 col-lg-12 col-md-6 box-col-7 d-none">
           <div class="card">
