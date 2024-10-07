@@ -61,13 +61,13 @@ public function uploadImage(Request $request)
             $file = file_get_contents($request->file(key: 'image'));
 
             $path = Storage::disk('s3')->putFileAs('avatars', $request->file(key: 'image'));
-            echo "<prE>"; print_r(value: $path); die;
+
             return response()->json(['url' => Storage::disk('s3')->url($path)]);
         }
 
 
     } catch (\Throwable $th) {
-        throw $th;
+
         return response()->json(['error' => 'File not uploaded'], 400);
     }
 
@@ -103,7 +103,7 @@ public function uploadImage(Request $request)
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required',
-            'proof_read_user' => 'required',
+            'user_level' => 'required',
             'language' => 'required'
 
         ]);
@@ -156,7 +156,7 @@ public function uploadImage(Request $request)
             'name' => 'required',
             'email' => 'required|email',
             'roles' => 'required',
-            'proof_read_user' => 'required',
+            'user_level' => 'required',
             'language' => 'required'
         ]);
 
@@ -181,8 +181,7 @@ public function uploadImage(Request $request)
 
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index')
-            ->with('success', 'User updated successfully');
+        return redirect()->route('users.index') ->with('success', 'User updated successfully');
     }
 
     /**

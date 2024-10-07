@@ -12,10 +12,33 @@
     <link rel="icon" href="{{ asset('assets/images/favicon.png" type="image/x-icon') }}" />
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png" type="image/x-icon') }}" />
     <!-- Google font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com'" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-    <link  href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900;6..12,1000&amp;display=swap"
-        rel="stylesheet" />
+
+
+    @if(Auth::check() && Auth::user()->language == 'English')
+        <link  href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900;6..12,1000&amp;display=swap"
+            rel="stylesheet" />
+    @endif
+
+    @if(Auth::check() && Auth::user()->language == 'Hindi')
+    <link rel="stylesheet" href="{{ asset('assets/fonts/Hindi/MyhindiHindigyan.ttf') }}" />
+    @endif
+
+    @if(Auth::check() && Auth::user()->language == 'Indonesian')
+    <link rel="stylesheet" href="{{ asset('assets/fonts/Hindi/MyhindiHindigyan.ttf') }}" />
+    @endif
+
+    @if(Auth::check() && Auth::user()->language == 'Persian')
+    <link rel="stylesheet" href="{{ asset('assets/fonts/Persian/Persian.ttf') }}" />
+    @endif
+
+    @if(Auth::check() && Auth::user()->language == 'Turkish')
+    <link rel="stylesheet" href="{{ asset('assets/fonts/Turkish/Turkish.ttf') }}" />
+    @endif
+
+    @if(Auth::check() && Auth::user()->language == 'Urdu')
+    <link rel="stylesheet" href="{{ asset('assets/fonts/Urdu/urdu.ttf') }}" />
+    @endif
+
     <!-- Flag icon css -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors/flag-icon.css') }}" />
 
@@ -91,7 +114,10 @@
                     <ul class="header-right">
 
 
-
+                        @php
+                            use App\Helpers\UserHelper;
+                            $role = UserHelper::userRole();
+                        @endphp
 
                         <li class="profile-nav custom-dropdown">
                             <div class="user-wrap">
@@ -103,7 +129,7 @@
                                         @endif
 
                                     </h6>
-                                    <p class="mb-0">Admin<i class="fa-solid fa-chevron-down"></i></p>
+                                    <p class="mb-0">{{ $role }} {{ (Auth::user()->user_level ) }}<i class="fa-solid fa-chevron-down"></i></p>
                                 </div>
                             </div>
                             <div class="custom-menu overflow-hidden">

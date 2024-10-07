@@ -21,10 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'proof_read_user',
+        'user_level',
         'profile_pic',
         'status',
-        'language'
+        'language',
+        'current_proof_reader'
     ];
 
     /**

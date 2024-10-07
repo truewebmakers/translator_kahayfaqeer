@@ -18,3 +18,7 @@ function UserCan($permission): mixed
     $user =  User::find(Auth::id());
     return Auth::check() ? $user->can($permission) : false;
 }
+
+
+
+// user_level

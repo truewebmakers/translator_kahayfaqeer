@@ -69,7 +69,7 @@
 
                                 <div class="col-md-6">
                                     <div class="input-select">
-                                        <label class="form-label" for="name">Proof Reader</label>
+                                        <label class="form-label" for="name">User Number</label>
 
                                         <select  name="proof_read_user" class="form-select mt-2" id="proof-update">
                                             @foreach (['admin','1','2','3','4','5'] as $val => $reader)

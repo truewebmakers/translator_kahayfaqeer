@@ -22,7 +22,7 @@ class BookTranslationComments extends Model
     //     });
     // }
 
-    public function comment(){
+    public function book(){
         return $this->belongsTo(BookTranslation::class);
     }
 

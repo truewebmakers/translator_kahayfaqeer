@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookTranslation;
 use App\Models\BookTranslationComments;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -146,7 +147,16 @@ class BookTranslationController extends Controller
         $validated = $request->validate([
              'text_status' => 'required|in:approved_without_comment,approved_with_comment,reject_revise_and_resubmit,under_review,in-process',
         ]);
+        $user =Auth::user();
+        if($request->input('text_status') == 'approved_without_comment'){
+            $current_proof_reader = $user->user_level + 1;
+            $validated['current_user_level'] = $current_proof_reader;
+        }else{
+            $current_proof_reader = $user->user_level;
+            $validated['current_user_level'] = $current_proof_reader;
+        }
         $bookTranslation = BookTranslationComments::findOrFail($id)->update($validated);
+
         return response()->json([
             'success' => 'Status has been updated','data' => $bookTranslation
         ]);

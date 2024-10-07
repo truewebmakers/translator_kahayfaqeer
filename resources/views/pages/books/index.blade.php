@@ -15,10 +15,17 @@
             text-align: center;
             padding: 10px;
         }
+        td.text-custom {
+    width: 30%;
+}
     </style>
     @php
         use App\Helpers\UserHelper;
         $role = UserHelper::userRole();
+        $user = Auth::user();
+
+
+
     @endphp
     <div class="page-body">
         @include('breadcrumb')
@@ -29,8 +36,6 @@
                     <div class="card">
                         <div class="card-header card-no-border pb-0">
                             <h3>Books</h3>
-
-
                         </div>
                         <div class="card-body transaction-history pt-0">
                             <div class="table-responsive theme-scrollbar">
@@ -48,6 +53,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($booklistings as $listing)
+
                                             <tr>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3">
@@ -63,11 +69,15 @@
                                                 <td>{{ $listing->chapter }}</td>
                                                 <td class="text-success">{{ $listing->page_number }} /
                                                     {{ $listing->sentence }}</td>
-                                                <td>
+                                                <td class="text-custom">
                                                     {!! $listing->text !!}
                                                 </td>
+
+                                                @php
+                                                $userLevel = UserHelper::LastUserLevel($listing->comment->current_user_level);
+                                                @endphp
                                                 <td>
-                                                    @if (UserHelper::userCan(['create_comment','update_comment','read_comment'],false))
+                                                    @if (UserHelper::userCan(['create_comment','update_comment','read_comment'],false) &&  $userLevel == true )
                                                         @if (!empty($listing->comment))
                                                             <form action="{{ route('book.comment.store', $listing->id) }}"
                                                                 method="post">
@@ -95,7 +105,7 @@
                                                                 <input type="hidden" name="type" value="comment">
                                                                 <textarea class="form-control" name="comment"> </textarea>
 
-                                                                @if (UserHelper::userCan(['create_comment','update_comment']))
+                                                                @if (UserHelper::userCan(['create_comment','update_comment']) && $userLevel == true )
                                                                 <button class="badge badge-success mt-1" type="submit"
                                                                     placeholder="comment" style="float: inline-end"><i
                                                                         class="fa-solid fa-check"></i></button>
@@ -117,7 +127,9 @@
                                                         ];
                                                     @endphp
 
-                                                    @if ($listing->comment)
+
+                                                    @if ($listing->comment && $userLevel==true)
+
                                                         <div class="card-heade">
                                                             <select class="form-select status-update"
                                                                 data-bookid="{{ $listing->comment->id }}">
@@ -146,11 +158,11 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if (UserHelper::userCan(['update_book_sentence']))
+                                                    @if (UserHelper::userCan(['update_book_sentence']) && $userLevel == true)
                                                         <a class="btn btn-primary"
                                                             href="{{ route('book.edit', $listing->id) }}">Edit</a>
                                                     @endif
-                                                    @if (UserHelper::userCan(['delete_book_sentence']))
+                                                    @if (UserHelper::userCan(['delete_book_sentence']) && $userLevel == true )
                                                         <form method="POST"
                                                             action="{{ route('book.delete', $listing->id) }}"
                                                             style="display:inline">
@@ -198,7 +210,7 @@
                     },
                     success: function(response) {
 
-                        location.reload();
+                       location.reload();
                     },
                     error: function(xhr, status, error) {
 
