@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('profile_pic')->nullable();
             $table->string('status')->nullable();
             $table->string('proof_read_user',50)->nullable();
-            $table->unsignedBigInteger('current_proof_reader',10)->default(1);
+            $table->string('current_proof_reader',10)->default(1);
             $table->string('language',50)->nullable();
 
             $table->rememberToken();
