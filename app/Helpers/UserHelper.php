@@ -30,7 +30,9 @@ class UserHelper
     public static function LastUserLevel($level)
     {
         $userLevel = Auth::user()->user_level;
-        if($level == $userLevel){
+        if(empty( $userLevel) ||  $userLevel == 'admin'){
+            return true;
+        }else if($level == $userLevel){
             return true;
         }
         return false;

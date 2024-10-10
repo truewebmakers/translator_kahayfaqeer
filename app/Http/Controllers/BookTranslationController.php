@@ -46,9 +46,6 @@ class BookTranslationController extends Controller
         }else{
             BookTranslationComments::create($validated);
         }
-
-
-
         // return response()->json([
         //     'success' => 'Comment added successful','data' => $commentData
         // ]);
@@ -58,7 +55,6 @@ class BookTranslationController extends Controller
 
     public function store(Request $request){
         $validated = $request->validate([
-
             'book_number' => 'nullable|integer',
             'chapter' => 'nullable|integer',
             'page_number' => 'nullable|integer',
@@ -70,28 +66,12 @@ class BookTranslationController extends Controller
         ]);
         $validated['user_id'] = Auth::id();
 
-        try {
-            if ($request->hasFile('urdu_audio')) {
-                $urduFile = $request->file('urdu_audio');
-                $audioFileName = time() . 'audio_file.' . $urduFile->getClientOriginalExtension();
-                $filePath = 'urdu_audio/' . $audioFileName;
-
-                Storage::disk('s3')->put($filePath, $urduFile);
-                $uploadSuccess = Storage::disk('s3')->url($filePath);
-            }
-            Log::info('File details: ', [
-                'original_name' => $urduFile->getClientOriginalName(),
-                'mime_type' => $urduFile->getMimeType(),
-                'size' => $urduFile->getSize(),
-            ]);
-
-        } catch (\Exception $e) {
-            // Log the error or return a response with the error message
-            Log::error('S3 Upload Error: ' . $e->getMessage());
-            return response()->json(['error' => 'File upload failed.'], 500);
+        if ($request->hasFile('urdu_audio')) {
+            $file = $request->file('urdu_audio');
+            $audioFileName = time() . 'audio_file' .$file->getClientOriginalExtension();
+            $path = $file->store($audioFileName, 'custom_public');
+            $validated['urdu_audio'] = $path;
         }
-
-
         // Create new TextRecord
      $book =  BookTranslation::create($validated);
 
@@ -117,7 +97,7 @@ class BookTranslationController extends Controller
             'sentence' => 'nullable|integer',
             'text' => 'nullable|string',
             'supporting_language' =>  'nullable|string',
-            'text_status' => 'required',
+            // 'text_status' => 'required',
             'urdu_audio' => 'nullable|file|mimes:mp3,wav',
             // 'urdu_audio_status' => 'required|in:approved_with_no_comment,approved_with_comment,reject_revise_and_resubmit,under_review',
         ]);
@@ -127,16 +107,25 @@ class BookTranslationController extends Controller
         $bookTranslation = BookTranslation::findOrFail($id);
 
         if ($request->hasFile('urdu_audio')) {
-            // Delete old file if exists
-            if ($bookTranslation->urdu_audio) {
-                Storage::delete($bookTranslation->urdu_audio);
-            }
-            $urduFile = $request->file('urdu_audio');
-            $audioFileName = time() . 'audio_file' . $urduFile->getClientOriginalExtension();
-            $filePath = 'urdu_audio/'.$audioFileName;
-            Storage::disk(name: 's3')->put($filePath, file_get_contents($urduFile));
-            $validated['urdu_audio'] = $filePath;
+            $file = $request->file('urdu_audio');
+            $audioFilePath ='/';
+            $audioFileName = time() . '.' . $file->getClientOriginalExtension(); // Create a unique file name
+            $path = $file->storeAs($audioFilePath, $audioFileName, 's3'); // Store the file
+
+            $validated['urdu_audio'] = env('AWS_URL').'/'.$audioFileName; // Store the file name in the validated array
         }
+
+        // if ($request->hasFile('urdu_audio')) {
+        //     // Delete old file if exists
+        //     if ($bookTranslation->urdu_audio) {
+        //         Storage::delete($bookTranslation->urdu_audio);
+        //     }
+        //     $urduFile = $request->file('urdu_audio');
+        //     $audioFileName = time() . 'audio_file' . $urduFile->getClientOriginalExtension();
+        //     $filePath = 'urdu_audio/'.$audioFileName;
+        //     Storage::disk(name: 'public')->put($filePath, file_get_contents($urduFile));
+        //     $validated['urdu_audio'] = $filePath;
+        // }
 
         // Update record
         $bookTranslation->update($validated);
@@ -151,10 +140,10 @@ class BookTranslationController extends Controller
         ]);
         $user =Auth::user();
         if($request->input('text_status') == 'approved_without_comment'){
-            $current_proof_reader = $user->user_level + 1;
+            $current_proof_reader = ($user->user_level == 'admin') ? 0 :  $user->user_level + 1;
             $validated['current_user_level'] = $current_proof_reader;
         }else{
-            $current_proof_reader = $user->user_level;
+            $current_proof_reader = ($user->user_level == 'admin') ? 0 : $user->user_level;
             $validated['current_user_level'] = $current_proof_reader;
         }
         $bookTranslation = BookTranslationComments::findOrFail($id)->update($validated);

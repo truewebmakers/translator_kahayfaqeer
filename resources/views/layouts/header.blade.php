@@ -61,6 +61,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css" media="screen') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/richtexteditor/rte_theme_default.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 </head>
@@ -74,7 +75,7 @@
     <div class="loader-wrapper">
         <div class="loader"><span></span><span></span><span></span><span></span><span></span></div>
     </div>
-    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+    <div class="page-wrapper compact-wrapper sidebar-open" id="pageWrapper">
         <header class="page-header row">
             <div class="logo-wrapper d-flex align-items-center col-auto"><a href="/"><img
                         class="light-logo img-fluid" src="{{asset('assets/images/logo/logo1.png')}}" alt="logo" /><img
