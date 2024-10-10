@@ -71,7 +71,7 @@
                                     <div class="input-select">
                                         <label class="form-label" for="name">User Number</label>
 
-                                        <select  name="proof_read_user" class="form-select mt-2" id="proof-update">
+                                        <select  name="user_level" class="form-select mt-2" id="proof-update">
                                             @foreach (['admin','1','2','3','4','5'] as $val => $reader)
                                                 <option
                                                      @if (isset($user) && $reader == $user->proof_read_user)
