@@ -65,6 +65,19 @@
                                     </div>
                                 </div>
 
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <h5 class="f-w-600 mb-2">Supporting Language  </h5>
+                                            <textarea class="form-control" id="bookLine2" name="supporting_language" rows="3">
+
+                                                {{ isset($book) ? $book->supporting_language : ''}}
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-3">
@@ -96,6 +109,7 @@
 @section('page_script')
     <script>
         var editor1 = new RichTextEditor("#bookLine");
+        var editor2 = new RichTextEditor("#bookLine2");
 
         //editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
     </script>

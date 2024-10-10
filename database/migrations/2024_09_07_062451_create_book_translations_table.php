@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('page_number')->default(0);
             $table->unsignedBigInteger('sentence')->default(0);
             $table->longText('text')->nullable();
+            $table->longText('supporting_language')->nullable();
             $table->string('urdu_audio')->nullable();
             $table->timestamps();
         });
