@@ -196,7 +196,7 @@
                                                         $listing->comment->current_user_level,
                                                     );
                                                 @endphp
-                                                <td>
+                                                <td class="comment-store" style="width:20%">
                                                     @if (UserHelper::userCan(['create_comment', 'update_comment', 'read_comment'], false) && $userLevel == true)
                                                         @if (!empty($listing->comment))
                                                             <form action="{{ route('book.comment.store', $listing->id) }}"
@@ -276,7 +276,7 @@
                                                         </div>
                                                     @endif
                                                 </td>
-                                                <td>
+                                                <td class="audio-container">
                                                     <audio controls>
                                                         <source src="https://{{ $listing->urdu_audio }}" type="audio/mp3">
                                                       </audio>
