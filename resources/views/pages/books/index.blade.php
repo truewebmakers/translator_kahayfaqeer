@@ -132,6 +132,12 @@
         .status-update {
             width: 110px;
         }
+        .modal-content {
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+    font-weight: 100 !important;
+}
     </style>
     @php
         use App\Helpers\UserHelper;
