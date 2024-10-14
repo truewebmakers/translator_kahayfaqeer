@@ -30,11 +30,11 @@
           </div>
         </div>
 
-        <form action="{{ route('upload.image') }}" method="post" enctype="multipart/form-data">
+        {{-- <form action="{{ route('upload.image') }}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="file" name="image" required>
             <button type="submit">Upload</button>
-        </form>
+        </form> --}}
 
         <div class="col-xxl-6 col-xl-8 proorder-xxl-8 col-lg-12 col-md-6 box-col-7 d-none">
           <div class="card">
