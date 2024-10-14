@@ -67,13 +67,21 @@ class BookTranslationController extends Controller
         $validated['user_id'] = Auth::id();
 
         if ($request->hasFile('urdu_audio')) {
-            $file = $request->file('urdu_audio');
-            $audioFileName = time() . 'audio_file' .$file->getClientOriginalExtension();
-            $path = $file->store($audioFileName, 'custom_public');
-            $validated['urdu_audio'] = $path;
+            try {
+
+                $file = $request->file('urdu_audio');
+                $audioFileName = time() . '.' . $file->getClientOriginalExtension();
+                // Upload the file to S3 and get the path
+                $path = Storage::disk('s3')->putFile('uploads', $file);
+                $validated['urdu_audio'] = Storage::disk('s3')->url($path);
+
+            } catch (\Throwable $th) {
+                // Return error message
+                Log::info("Error In Upload save".$th->getMessage());
+            }
         }
         // Create new TextRecord
-     $book =  BookTranslation::create($validated);
+       $book =  BookTranslation::create($validated);
 
         BookTranslationComments::create([
             'book_translation_id' => $book->id,
@@ -107,25 +115,21 @@ class BookTranslationController extends Controller
         $bookTranslation = BookTranslation::findOrFail($id);
 
         if ($request->hasFile('urdu_audio')) {
-            $file = $request->file('urdu_audio');
-            $audioFilePath ='/';
-            $audioFileName = time() . '.' . $file->getClientOriginalExtension(); // Create a unique file name
-            $path = $file->storeAs($audioFilePath, $audioFileName, 's3'); // Store the file
 
-            $validated['urdu_audio'] = env('AWS_URL').'/'.$audioFileName; // Store the file name in the validated array
+
+            try {
+
+                $file = $request->file('urdu_audio');
+                $audioFileName = time() . '.' . $file->getClientOriginalExtension();
+                // Upload the file to S3 and get the path
+                $path = Storage::disk('s3')->putFile('uploads', $file);
+                $validated['urdu_audio'] = Storage::disk('s3')->url($path);
+
+            } catch (\Throwable $th) {
+                // Return error message
+                Log::info("Error In Upload".$th->getMessage());
+            }
         }
-
-        // if ($request->hasFile('urdu_audio')) {
-        //     // Delete old file if exists
-        //     if ($bookTranslation->urdu_audio) {
-        //         Storage::delete($bookTranslation->urdu_audio);
-        //     }
-        //     $urduFile = $request->file('urdu_audio');
-        //     $audioFileName = time() . 'audio_file' . $urduFile->getClientOriginalExtension();
-        //     $filePath = 'urdu_audio/'.$audioFileName;
-        //     Storage::disk(name: 'public')->put($filePath, file_get_contents($urduFile));
-        //     $validated['urdu_audio'] = $filePath;
-        // }
 
         // Update record
         $bookTranslation->update($validated);
