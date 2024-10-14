@@ -274,7 +274,7 @@
                                                 </td>
                                                 <td>
                                                     <audio controls>
-                                                        <source src="{{ $listing->urdu_audio }}" type="audio/mp3">
+                                                        <source src="https://{{ $listing->urdu_audio }}" type="audio/mp3">
                                                       </audio>
                                                 </td>
                                                 <td class="text-end">
