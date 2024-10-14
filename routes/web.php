@@ -4,12 +4,27 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\{PermissionController,RoleController,BookTranslationController,UserController};
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('admin.dashboard');
     } else {
         return view('auth.login');
+    }
+});
+
+Route::get('/test-s3', function () {
+    try {
+        $disk = Storage::disk('s3');
+
+        // Test by listing files in the bucket
+        $files = $disk->files();
+
+        return response()->json($files);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
 });
 

@@ -30,7 +30,7 @@
           </div>
         </div>
 
-        <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('upload.image') }}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="file" name="image" required>
             <button type="submit">Upload</button>

@@ -48,30 +48,34 @@ class UserController extends Controller
 
 
 
-public function uploadImage(Request $request)
-{
+    public function uploadImage(Request $request)
+    {
+        try {
+            // Validate the request
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10000', // Adjust validation as needed
+            ]);
 
-    try {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10000', // Adjust validation as needed
-        ]);
+            // Check if the request has an image file
+            if ($request->hasFile('image')) {
+                // Get the uploaded file
+                $file = $request->file('image');
 
-        if ($request->hasFile('image')) {
+                // Upload the file to S3 and get the path
+                $path = Storage::disk('s3')->putFile('avatars', $file);
 
-            $file = file_get_contents($request->file(key: 'image'));
+                // Return the URL of the uploaded file
+                return response()->json(['url' => Storage::disk('s3')->url($path)]);
+            }
 
-            $path = Storage::disk('s3')->putFileAs('avatars', $request->file(key: 'image'));
+            return response()->json(['error' => 'No file uploaded'], 400);
 
-            return response()->json(['url' => Storage::disk('s3')->url($path)]);
+        } catch (\Throwable $th) {
+            // Return error message
+            return response()->json(['error' => $th->getMessage()], 400);
         }
-
-
-    } catch (\Throwable $th) {
-
-        return response()->json(['error' => 'File not uploaded'], 400);
     }
 
-}
 
 
 
