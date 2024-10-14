@@ -151,7 +151,7 @@ td.audio-container audio {
                                         <tr>
                                             <th>Bookno/Chapter / Pageno / Sentence</th>
 
-                                            <th>Text</th>
+                                            <th>Language</th>
                                             <th>Supporting Language</th>
                                             <th>Comment</th>
                                             <th class="text-center">Book Status</th>
