@@ -84,9 +84,13 @@
                                             <h5 class="f-w-600 mb-2">Upload Audio file</h5>
 
                                             <div class="col-12">
-                                                <input class="form-control" id="formFile" type="file" name="urdu_audio">
+                                                <input class="form-control" id="formFile" type="file" value="{{ isset($book) ? $book->urdu_audio : ''}}" name="urdu_audio">
                                               </div>
-                                            {{-- urdu_audio --}}
+                                              @if($book)
+                                                <audio controls>
+                                                    <source src="https://{{ $book->urdu_audio }}" type="audio/mp3">
+                                                </audio>
+                                              @endif
                                         </div>
                                     </div>
                                 </div>
