@@ -393,15 +393,18 @@
 @section('page_script')
     <script>
         $(".submit-this").click(function(e) {
+            var cls = 'fa-solid fa-check';
+            var loader = 'fa fa-spinner fa-spin';
             e.preventDefault();
             $this = $(this);
+            $this.find('i').addClass(loader).removeClass(cls)
             var formId = $this.attr('data-form');
             $.ajax({
                 type: 'POST',
                 url: $(formId).attr('action'),
                 data: $(formId).serialize(), // Serialize the form data
                 success: function(response) {
-
+                    $this.find('i').addClass(cls).removeClass(loader)
                     toastr.success("Comment submitted successfully!");
                 },
                 error: function(xhr, status, error) {
