@@ -157,6 +157,26 @@ class BookTranslationController extends Controller
         ]);
     }
 
+    public function AudiostatusUpdate(Request $request,$id){
+
+        $validated = $request->validate([
+             'urdu_audio_status' => 'required|in:approved_without_comment,approved_with_comment,reject_revise_and_resubmit,under_review,in-process',
+        ]);
+        // $user =Auth::user();
+        // if($request->input('urdu_audio_status') == 'approved_without_comment'){
+        //    // $current_proof_reader = ($user->user_level == 'admin') ? 0 :  $user->user_level + 1;
+        //   //  $validated['current_user_level'] = $current_proof_reader;
+        // }else{
+        //   //  $current_proof_reader = ($user->user_level == 'admin') ? 0 : $user->user_level;
+        //     //$validated['current_user_level'] = $current_proof_reader;
+        // }
+        $bookTranslation = BookTranslationComments::findOrFail($id)->update($validated);
+
+        return response()->json([
+            'success' => 'Status has been updated','data' => $bookTranslation
+        ]);
+    }
+
     public function delete(string $id)
     {
         BookTranslation::find($id)->delete();

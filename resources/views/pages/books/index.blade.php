@@ -372,6 +372,39 @@ td.audio-container audio {
 
 @section('page_script')
     <script>
+
+
+        $(".status-update-audio").change(function() {
+            $this = $(this);
+            var bookId = $this.attr('data-bookid');
+            var urll = "{{ route('book.comment.status.audioupdate', ':bookId') }}".replace(':bookId', bookId);
+
+            if (confirm("are you sure you want to update the status for this Audio file?")) {
+
+                $.ajax({
+                    url: urll,
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        urdu_audio_status: $(this).val(),
+
+                    },
+                    success: function(response) {
+
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        alert('some issue')
+                    }
+                });
+
+            }
+            return false
+
+
+        })
         $(".status-update").change(function() {
             $this = $(this);
             var bookId = $this.attr('data-bookid');

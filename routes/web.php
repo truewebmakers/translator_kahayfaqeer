@@ -57,6 +57,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/book/comment/{id}',[BookTranslationController::class, 'book_comment'])->name('book.comment');
     Route::post('/book/comment/store/{id}',[BookTranslationController::class, 'storeComment'])->name('book.comment.store');
     Route::post('/book/comment/status/update/{id}',[BookTranslationController::class, 'statusUpdate'])->name('book.comment.status.update');
+    Route::post('/book/comment/status/audioupdate/{id}',[BookTranslationController::class, 'AudiostatusUpdate'])->name('book.comment.status.audioupdate');
+
 
 
 
