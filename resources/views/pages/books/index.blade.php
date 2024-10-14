@@ -118,6 +118,15 @@
     display: inline;
     cursor: pointer;
 }
+td.audio-container {
+    text-align: center;
+}
+td.audio-container audio {
+    width: 66%;
+}
+.status-update{
+    width: 110px;
+}
     </style>
     @php
         use App\Helpers\UserHelper;
@@ -251,7 +260,7 @@
                                                     @if ($listing->comment && $userLevel == true)
                                                         <div class="card-heade">
                                                             <select class="form-select status-update"
-                                                                data-bookid="{{ $listing->comment->id }}">
+                                                                data-bookid="{{ $listing->comment->id }}" style="width: 110px">
                                                                 @foreach ($statusArr as $val => $status)
                                                                     <option
                                                                         @if ($val == $listing->comment->text_status) class="{{ 'cl-' . $val }} selected" value="{{ $val }}" @else class="{{ 'cl-' . $val }}" value="{{ $val }}" @endif
@@ -276,7 +285,7 @@
                                                         </div>
                                                     @endif
                                                 </td>
-                                                <td class="audio-container">
+                                                <td class="audio-container" style="width:20%">
                                                     <audio controls>
                                                         <source src="https://{{ $listing->urdu_audio }}" type="audio/mp3">
                                                       </audio>
@@ -296,7 +305,7 @@
                                                     @if ($listing->comment && $userLevel == true)
                                                         <div class="card-heade">
                                                             <select class="form-select status-update-audio"
-                                                                data-bookid="{{ $listing->comment->id }}">
+                                                                data-bookid="{{ $listing->comment->id }}"  style="width: 110px">
                                                                 @foreach ($statusArr as $val => $status)
                                                                     <option
                                                                         @if ($val == $listing->comment->text_status) class="{{ 'cl-' . $val }} selected" value="{{ $val }}" @else class="{{ 'cl-' . $val }}" value="{{ $val }}" @endif
