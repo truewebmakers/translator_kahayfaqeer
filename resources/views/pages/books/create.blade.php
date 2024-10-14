@@ -86,7 +86,7 @@
                                             <div class="col-12">
                                                 <input class="form-control" id="formFile" type="file" value="{{ isset($book) ? $book->urdu_audio : ''}}" name="urdu_audio">
                                               </div>
-                                              @if($book)
+                                              @if(isset($book))
                                                 <audio controls>
                                                     <source src="https://{{ $book->urdu_audio }}" type="audio/mp3">
                                                 </audio>
