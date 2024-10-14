@@ -37,11 +37,31 @@
 <!-- dashboard_1-->
 <!-- custom script -->
 <script src="{{ asset('assets/js/script.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script type="text/javascript" src="{{ asset('assets/css/richtexteditor/rte.js') }}"></script>
 <script type="text/javascript" src='{{ asset('assets/css/richtexteditor/all_plugins.js') }}'></script>
 
+<script>
+    toastr.options = {
+  "closeButton": true,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
 
+
+</script>
 
  @yield('page_script')
 

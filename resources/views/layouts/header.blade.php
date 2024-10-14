@@ -62,11 +62,19 @@
     <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css" media="screen') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/richtexteditor/rte_theme_default.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
 
 
 </head>
 
 <body>
+    <style>
+        .toast-message{
+            color: #ffffff;
+        }
+    </style>
     <!-- page-wrapper Start-->
     <!-- tap on top starts-->
     <div class="tap-top"><i class="iconly-Arrow-Up icli"></i></div>
