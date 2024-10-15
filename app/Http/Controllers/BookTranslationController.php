@@ -61,7 +61,7 @@ class BookTranslationController extends Controller
             'sentence' => 'nullable|integer',
             'text' => 'nullable|string',
             'supporting_language' =>  'nullable|string',
-            'urdu_audio' => 'required|mimes:mp3,wav|max:2097152',
+            // 'urdu_audio' => 'required|mimes:mp3,wav|max:2097152',
 
         ]);
         $validated['user_id'] = Auth::id();
@@ -106,7 +106,7 @@ class BookTranslationController extends Controller
             'text' => 'nullable|string',
             'supporting_language' =>  'nullable|string',
             // 'text_status' => 'required',
-            'urdu_audio' => 'nullable|file|mimes:mp3,wav',
+            // 'urdu_audio' => 'nullable|file|mimes:mp3,wav',
             // 'urdu_audio_status' => 'required|in:approved_with_no_comment,approved_with_comment,reject_revise_and_resubmit,under_review',
         ]);
 
