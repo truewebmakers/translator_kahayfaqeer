@@ -115,6 +115,23 @@
                                    </div>
                                 </div>
 
+                                <div class="col-md-6">
+                                    <div class="input-select">
+                                        <label class="form-label" for="name">Second Language</label>
+
+                                        <select  name="second_language" class="form-select mt-2" id="lang-update2">
+                                            @foreach ($languageArr as $val => $lang)
+                                                <option
+                                                     @if (isset($user) && $lang == $user->second_language)
+                                                        selected
+                                                     @endif
+                                                     value="{{ $lang }}">{{ $lang }}</option>
+                                            @endforeach
+
+                                        </select>
+                                   </div>
+                                </div>
+
 
                                 <div class="col-12">
                                   <button class="btn btn-primary float-end" type="submit">{{ isset($user) ? 'Update' : 'Create' }}</button>

@@ -1,13 +1,18 @@
 @extends('layouts.guest')
 @section('content')
+<style>
+    a.logo img {
+    height: 70px;
+}
+</style>
     <div class="container-fluid p-0">
         <div class="row m-0">
             <div class="col-12 p-0">
                 <div class="login-card login-dark">
                     <div>
                         <div><a class="logo" href="/"><img class="img-fluid for-light m-auto"
-                                    src="../assets/images/logo/logo1.png" alt="looginpage"><img class="img-fluid for-dark"
-                                    src="../assets/images/logo/logo-dark.png" alt="logo"></a></div>
+                                    src="../assets/images/logo/kaha-faqeer-white1.png" alt="looginpage"><img class="img-fluid for-dark"
+                                    src="../assets/images/logo/kaha-faqeer-dark.png" alt="logo"></a></div>
                         <div class="login-main">
                             @include('alerts')
 

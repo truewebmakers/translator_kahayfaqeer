@@ -132,12 +132,13 @@
         .status-update {
             width: 110px;
         }
+
         .modal-content {
-    align-items: center;
-    display: flex;
-    font-size: 16px;
-    font-weight: 100 !important;
-}
+            align-items: center;
+            display: flex;
+            font-size: 16px;
+            font-weight: 100 !important;
+        }
     </style>
     @php
         use App\Helpers\UserHelper;
@@ -247,7 +248,8 @@
                                                                 @endif
                                                             </form>
                                                         @else
-                                                            <form  id="form-{{ $listing->id }}" action="{{ route('book.comment.store', $listing->id) }}"
+                                                            <form id="form-{{ $listing->id }}"
+                                                                action="{{ route('book.comment.store', $listing->id) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 <input type="hidden" name="comment_id" value="">
@@ -257,8 +259,7 @@
                                                                 <textarea class="form-control" name="comment"> </textarea>
 
                                                                 @if (UserHelper::userCan(['create_comment', 'update_comment']) && $userLevel == true)
-                                                                    <button class="badge badge-success mt-1"
-                                                                       type="button"
+                                                                    <button class="badge badge-success mt-1" type="button"
                                                                         data-form="#form-{{ $listing->id }}"
                                                                         placeholder="comment" style="float: inline-end"><i
                                                                             class="fa-solid fa-check"></i></button>
@@ -290,7 +291,7 @@
                                                                     <option
                                                                         @if ($val == $listing->comment->text_status) class="{{ 'cl-' . $val }} selected" value="{{ $val }}" @else class="{{ 'cl-' . $val }}" value="{{ $val }}" @endif
                                                                         @if ($val == $listing->comment->text_status) selected @endif>
-                                                                        Status : {{ $status }}</option>
+                                                                         {{ $status }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -336,7 +337,7 @@
                                                                     <option
                                                                         @if ($val == $listing->comment->urdu_audio_status) class="{{ 'cl-' . $val }} selected" value="{{ $val }}" @else class="{{ 'cl-' . $val }}" value="{{ $val }}" @endif
                                                                         @if ($val == $listing->comment->urdu_audio_status) selected @endif>
-                                                                        Status : {{ $status }}</option>
+                                                                         {{ $status }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -415,7 +416,7 @@
                 },
                 error: function(xhr, status, error) {
 
-                    toastr.error('An error occurred: '+ xhr.responseText);
+                    toastr.error('An error occurred: ' + xhr.responseText);
                 }
             });
 

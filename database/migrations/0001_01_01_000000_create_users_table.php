@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('proof_read_user',50)->nullable();
             $table->string('user_level',10)->default(1);
             $table->string('language',50)->nullable();
+            $table->string('second_language',50)->nullable();
+
 
             $table->rememberToken();
             $table->timestamps();

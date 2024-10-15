@@ -25,8 +25,10 @@ class User extends Authenticatable
         'profile_pic',
         'status',
         'language',
-        'user_level'
+        'user_level',
+        'second_language'
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.

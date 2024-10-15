@@ -108,7 +108,8 @@ class UserController extends Controller
             'password' => 'required|same:confirm-password',
             'roles' => 'required',
             'user_level' => 'required',
-            'language' => 'required'
+            'language' => 'required',
+            'second_language' => 'required'
 
         ]);
 
