@@ -83,32 +83,49 @@
                                         </select>
                                    </div>
                                 </div>
-                                @php
-
-                                $languageArr = [
-                                    'Urdu',
-                                    'English',
-                                    'Arabic',
-                                    'Hindi',
-                                    'Indonesian',
-                                    'Bengali',
-                                    'Persian',
-                                    'Turkish',
-                                ];
-
-                            @endphp
 
                                 <div class="col-md-6">
                                     <div class="input-select">
+                                        <label class="form-label" for="name">Department</label>
+
+                                        <select  name="department" class="form-select mt-2" id="department-update">
+                                            @foreach ([''=>'Choose Department','seed' => 'Seed' , 'tranlation' => 'Translation'] as $val => $seed)
+                                                <option
+                                                     @if (isset($user) && $val == $user->department)
+                                                        selected
+                                                     @endif
+                                                     value="{{ $val }}">{{ $seed }}</option>
+                                            @endforeach
+
+                                        </select>
+                                   </div>
+                                </div>
+                                @php
+                                        $languageArr = [
+                                             '' => 'Choose Language',
+                                             'urdu' => 'Urdu',
+                                             'english' => 'English',
+                                             'arabic' => 'Arabic',
+                                             'hindi' => 'Hindi',
+                                             'indonesian' => 'Indonesian',
+                                             'bengali' => 'Bengali',
+                                             'persian' =>   'Persian',
+                                             'turkish' =>  'Turkish',
+                                        ];
+
+                                    @endphp
+
+                                <div class="col-md-6">
+                                    <div class="input-select"  style="display: {{ (isset($user) &&  $user->department ==  'seed' ) ? 'none' : 'disply' }}" >
                                         <label class="form-label" for="name">Language</label>
 
                                         <select  name="language" class="form-select mt-2" id="lang-update">
                                             @foreach ($languageArr as $val => $lang)
                                                 <option
-                                                     @if (isset($user) && $lang == $user->language)
+                                                     @if (isset($user) && $val == $user->language)
                                                         selected
                                                      @endif
-                                                     value="{{ $lang }}">{{ $lang }}</option>
+                                                     value="{{ $val }}">{{ $lang }}</option>
                                             @endforeach
 
                                         </select>
@@ -116,16 +133,16 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="input-select">
+                                    <div class="input-select" style="display: {{ (isset($user) &&  $user->department ==  'seed' ) ? 'none' : 'disply' }}" >
                                         <label class="form-label" for="name">Second Language</label>
 
                                         <select  name="second_language" class="form-select mt-2" id="lang-update2">
                                             @foreach ($languageArr as $val => $lang)
                                                 <option
-                                                     @if (isset($user) && $lang == $user->second_language)
+                                                     @if (isset($user) && $val == $user->second_language)
                                                         selected
                                                      @endif
-                                                     value="{{ $lang }}">{{ $lang }}</option>
+                                                     value="{{ $val }}">{{ $lang }}</option>
                                             @endforeach
 
                                         </select>
@@ -143,4 +160,21 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('page_script')
+<script>
+
+    $("#department-update").change(function(){
+        var department = $(this).val();
+        if(department == 'seed'){
+            $("#lang-update").parents('.input-select').fadeOut();
+            $("#lang-update2").parents('.input-select').fadeOut();
+        }else{
+            $("#lang-update").parents('.input-select').fadeIn();
+            $("#lang-update2").parents('.input-select').fadeIn();
+        }
+    })
+
+</script>
 @endsection

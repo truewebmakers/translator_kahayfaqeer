@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('user_level',10)->default(1);
             $table->string('language',50)->nullable();
             $table->string('second_language',50)->nullable();
+            $table->string('department',50)->nullable();
+
 
 
             $table->rememberToken();

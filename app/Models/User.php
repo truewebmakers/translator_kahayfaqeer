@@ -26,7 +26,7 @@ class User extends Authenticatable
         'status',
         'language',
         'user_level',
-        'second_language'
+        'second_language','department'
     ];
 
 

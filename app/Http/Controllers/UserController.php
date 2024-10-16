@@ -108,8 +108,9 @@ class UserController extends Controller
             'password' => 'required|same:confirm-password',
             'roles' => 'required',
             'user_level' => 'required',
-            'language' => 'required',
-            'second_language' => 'required'
+            'language' => 'nullable',
+            'department' => 'required',
+            'second_language' => 'nullable'
 
         ]);
 
@@ -162,7 +163,9 @@ class UserController extends Controller
             'email' => 'required|email',
             'roles' => 'required',
             'user_level' => 'required',
-            'language' => 'required'
+            'language' => 'nullable',
+            'department' => 'required',
+            'second_language' => 'nullable'
         ]);
 
 

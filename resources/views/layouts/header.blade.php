@@ -63,7 +63,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css" media="screen') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/richtexteditor/rte_theme_default.css') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 </head>
@@ -74,8 +75,8 @@
             color: #ffffff;
         }
         .logo-wrapper.d-flex.align-items-center.col-auto img {
-    height: 40px;
-}
+            height: 40px;
+        }
     </style>
     <!-- page-wrapper Start-->
     <!-- tap on top starts-->

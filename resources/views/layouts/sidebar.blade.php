@@ -76,7 +76,7 @@
                 </a>
                 <ul class="sidebar-submenu" style="display: none;">
                     @if( UserHelper::userCan(['create_book_sentence', 'delete_book_sentence','read_book_sentence','update_book_sentence']))
-                    <li> <a href="{{ route('book.create') }}">Add</a></li>
+                    {{-- <li> <a href="{{ route('book.create') }}">Add</a></li> --}}
                     @endif
                     @if( UserHelper::userCan(['create_book_sentence','read_book_sentence'], false))
                     <li> <a href="{{ route('book.index') }}">List</a></li>

@@ -88,13 +88,19 @@ class BookTranslationController extends Controller
             'proof_read_user' => Auth::id(),
             'user_id' => Auth::id()
         ]);
+        return response()->json([
+            'success' => 'Book Created Successfully'
+        ]);
 
-        return redirect()->back()->with('success','Book Created Successfully');
     }
     public function edit($id){
         $book = BookTranslation::findOrFail($id);
 
-        return view('pages.books.create',compact('book'));
+        return response()->json([
+            'success' => 'Book data fetched','data' => $book
+        ]);
+
+        // return view('pages.books.create',compact('book'));
     }
 
     public function update(Request $request,$id){
@@ -134,7 +140,11 @@ class BookTranslationController extends Controller
         // Update record
         $bookTranslation->update($validated);
 
-        return redirect()->back()->with('success','Book Updated Successfully');
+        return response()->json([
+            'success' => 'Book data fetched'
+        ]);
+
+        // return redirect()->back()->with('success','Book Updated Successfully');
     }
 
     public function statusUpdate(Request $request,$id){
@@ -177,10 +187,10 @@ class BookTranslationController extends Controller
         ]);
     }
 
-    public function delete(string $id)
+    public function delete($id)
     {
         BookTranslation::find($id)->delete();
-        return redirect()->route('book.index')->with('success', 'deleted successfully');
+        return redirect()->back()->with('success', 'deleted successfully');
     }
 
 }
