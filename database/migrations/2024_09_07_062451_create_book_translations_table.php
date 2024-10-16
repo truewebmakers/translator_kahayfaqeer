@@ -22,6 +22,18 @@ return new class extends Migration
             $table->unsignedBigInteger('sentence')->default(0);
             $table->longText('text')->nullable();
             $table->longText('supporting_language')->nullable();
+
+
+            $table->longText('urdu')->nullable();
+            $table->longText('english')->nullable();
+            $table->longText('arabic')->nullable();
+            $table->longText('hindi')->nullable();
+            $table->longText('indonesian')->nullable();
+            $table->longText('bengali')->nullable();
+            $table->longText('persian')->nullable();
+            $table->longText('turkish')->nullable();
+
+
             $table->string('urdu_audio')->nullable();
             $table->timestamps();
         });
