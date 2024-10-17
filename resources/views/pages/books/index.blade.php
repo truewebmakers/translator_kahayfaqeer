@@ -101,9 +101,13 @@
             font-weight: 100 !important;
         }
 
-        .modal-footer form {
+        /* .modal-footer form {
             width: 100%;
-        }
+        } */
+
+        /* button.badge.badge-success.mt-1.submit-this {
+    font-size: 14px;
+} */
     </style>
     @php
         use App\Helpers\UserHelper;
@@ -138,9 +142,6 @@
                                             <th>Pageno</th>
                                             <th>Sentence</th>
 
-                                            @if (Auth::user()->department == 'seed')
-                                                <th>Supporting Language</th>
-                                            @endif
                                             @if (Auth::user()->department == 'seed')
                                                 <th>Urdu</th>
                                             @endif

@@ -59,8 +59,8 @@ class BookTranslationController extends Controller
             'chapter' => 'nullable|integer',
             'page_number' => 'nullable|integer',
             'sentence' => 'nullable|integer',
-            'text' => 'nullable|string',
-            'supporting_language' =>  'nullable|string',
+            '$request->' => 'nullable|string',
+            // 'supporting_language' =>  'nullable|string',
             // 'urdu_audio' => 'required|mimes:mp3,wav|max:2097152',
 
         ]);
@@ -79,6 +79,9 @@ class BookTranslationController extends Controller
                 // Return error message
                 Log::info("Error In Upload save".$th->getMessage());
             }
+        }
+        if (!Auth::user()->hasRole('admin')) {
+            $validated[Auth::user()->language] = $request->input('text');
         }
         // Create new TextRecord
        $book =  BookTranslation::create($validated);
@@ -136,7 +139,9 @@ class BookTranslationController extends Controller
                 Log::info("Error In Upload".$th->getMessage());
             }
         }
-
+        if (!Auth::user()->hasRole('admin')) {
+            $validated[Auth::user()->language] = $request->input('text');
+        }
         // Update record
         $bookTranslation->update($validated);
 

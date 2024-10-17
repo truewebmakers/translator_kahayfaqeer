@@ -55,13 +55,13 @@
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
-                                    <h5 class="f-w-600 mb-2">Book Line </h5>
+                                    <h5 class="f-w-600 mb-2">Add Your Language ( {{Auth::user()->language }} )</h5>
                                     <textarea class="form-control" id="bookLine" name="text" rows="3">{{ isset($book) ? $book->text : '' }}</textarea>
                                 </div>
                             </div>
                         </div>
 
-
+{{--
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
@@ -69,7 +69,7 @@
                                     <textarea class="form-control" id="bookLine2" name="supporting_language" rows="3">{{ isset($book) ? $book->supporting_language : '' }}</textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="row">
                             <div class="col">

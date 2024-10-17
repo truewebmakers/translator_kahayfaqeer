@@ -14,31 +14,12 @@
     <!-- Google font-->
 
 
-    @if (Auth::check() && Auth::user()->language == 'English')
-        <link
+
+        {{-- <link
             href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900;6..12,1000&amp;display=swap"
-            rel="stylesheet" />
-    @endif
+            rel="stylesheet" /> --}}
 
-    @if (Auth::check() && Auth::user()->language == 'Hindi')
-        <link rel="stylesheet" href="{{ asset('assets/fonts/Hindi/MyhindiHindigyan.ttf') }}" />
-    @endif
 
-    @if (Auth::check() && Auth::user()->language == 'Indonesian')
-        <link rel="stylesheet" href="{{ asset('assets/fonts/Hindi/MyhindiHindigyan.ttf') }}" />
-    @endif
-
-    @if (Auth::check() && Auth::user()->language == 'Persian')
-        <link rel="stylesheet" href="{{ asset('assets/fonts/Persian/Persian.ttf') }}" />
-    @endif
-
-    @if (Auth::check() && Auth::user()->language == 'Turkish')
-        <link rel="stylesheet" href="{{ asset('assets/fonts/Turkish/Turkish.ttf') }}" />
-    @endif
-
-    @if (Auth::check() && Auth::user()->language == 'Urdu')
-        <link rel="stylesheet" href="{{ asset('assets/fonts/Urdu/urdu.ttf') }}" />
-    @endif
 
     <!-- Flag icon css -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendors/flag-icon.css') }}" />
@@ -53,19 +34,15 @@
     <!--fontawesome-->
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-min.css') }}" />
     <!-- Whether Icon css-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/css/vendors/weather-icons/weather-icons.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/weather-icons/weather-icons.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/scrollbar.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/slick.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/slick-theme.css') }}" />
     <!-- App css -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-    <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css" media="screen') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/richtexteditor/rte_theme_default.css') }}" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 </head>
 
