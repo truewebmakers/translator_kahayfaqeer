@@ -56,7 +56,7 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <h5 class="f-w-600 mb-2">Add Your Language ( {{Auth::user()->language }} )</h5>
-                                    <textarea class="form-control" id="bookLine" name="text" rows="3">{{ isset($book) ? $book->text : '' }}</textarea>
+                                    <textarea class="form-control" id="bookLine" name="text" rows="10">{{ isset($book) ? $book->text : '' }}</textarea>
                                 </div>
                             </div>
                         </div>
