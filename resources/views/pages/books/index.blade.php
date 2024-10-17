@@ -583,7 +583,7 @@
 
             $.ajax({
                 type: 'POST',
-                url:  url: $("#add-book-form").attr('action'),,
+                url: $("#add-book-form").attr('action'),
                 data: formData,
                 processData: false, // Prevent jQuery from automatically processing the data
                 contentType: false, // Prevent jQuery from setting the content type
