@@ -579,7 +579,7 @@
                 $this.text("Updating..")
 
             }
-            var formData = new FormData($("#add-book-form")); // Create a FormData object from the form
+            var formData = new FormData(document.getElementById("add-book-form"));
 
             $.ajax({
                 type: 'POST',
