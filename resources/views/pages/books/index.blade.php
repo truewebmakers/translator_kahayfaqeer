@@ -100,6 +100,10 @@
             font-size: 16px;
             font-weight: 100 !important;
         }
+
+     .modal-footer form {
+    width: 100%;
+}
     </style>
     @php
         use App\Helpers\UserHelper;
@@ -177,7 +181,7 @@
                                                     <div class="text-container" data-text="{{ $listing->text }}">
                                                         {!! substr_replace($listing->text, '...', 100) !!}
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -191,7 +195,7 @@
                                                     <div class="text-container" data-text="{{ $listing->supporting_language }}">
                                                         <span class="text"> {!! substr_replace($listing->supporting_language, '...', 100) !!} </span>
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -202,7 +206,7 @@
                                                     <div class="text-container" data-text="{{ $listing->urdu }}">
                                                         <span class="text"> {!! substr_replace($listing->urdu, '...', 100) !!} </span>
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -214,7 +218,7 @@
                                                     <div class="text-container" data-text="{{ $listing->english }}">
                                                         <span class="text"> {!! substr_replace($listing->english, '...', 100) !!} </span>
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -227,7 +231,7 @@
                                                     <div class="text-container" data-text="{{ $listing->arabic }}">
                                                         <span class="text"> {!! substr_replace($listing->arabic, '...', 100) !!} </span>
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -240,7 +244,7 @@
                                                     <div class="text-container" data-text="{{ $listing->hindi }}">
                                                         <span class="text"> {!! substr_replace($listing->hindi, '...', 100) !!} </span>
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -253,7 +257,7 @@
                                                     <div class="text-container" data-text="{{ $listing->indonesian }}">
                                                         <span class="text"> {!! substr_replace($listing->indonesian, '...', 100) !!} </span>
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -265,7 +269,7 @@
                                                     <div class="text-container" data-text="{{ $listing->bengali }}">
                                                         <span class="text"> {!! substr_replace($listing->bengali, '...', 100) !!} </span>
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -277,7 +281,7 @@
                                                     <div class="text-container" data-text="{{ $listing->persian }}">
                                                         <span class="text"> {!! substr_replace($listing->persian, '...', 100) !!} </span>
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -289,7 +293,7 @@
                                                     <div class="text-container" data-text="{{ $listing->turkish }}">
                                                         <span class="text"> {!! substr_replace($listing->turkish, '...', 100) !!} </span>
                                                         <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass" data-bs-toggle="modal"
+                                                            <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
                                                                 data-bs-target="#myModal"></i>
                                                         </div>
                                                     </div>
@@ -304,7 +308,7 @@
                                                         $listing->comment->current_user_level,
                                                     );
                                                 @endphp
-                                                <td class="comment-store" style="width:20%">
+                                                <td class="comment-store" style="width:20%" id="commentForm{{$listing->id}}">
                                                     @if (UserHelper::userCan(['create_comment', 'update_comment', 'read_comment'], false) && $userLevel == true)
                                                         @if (!empty($listing->comment))
                                                             <form id="form-{{ $listing->id }}"
@@ -491,7 +495,7 @@
             const formAction = $this.attr('data-action');
             $("#add-book-form").attr('action', formAction)
             $("#add-book-form-md").find('.modal-title').text("Add Book")
-            $(".submit-add-book").text("Create");
+            $(".submit-add-book").text("Create").attr("data-button",'add');
         })
         $(".edit-listing").click(function() {
             $this = $(this);
@@ -500,7 +504,8 @@
             $("#add-book-form-md").find('.modal-title').text("Update Book")
             var urll = "{{ route('book.edit', ':bookId') }}".replace(':bookId', listId);
             $("#add-book-form").attr('action', formAction)
-            $(".submit-add-book").text("Update");
+
+            $(".submit-add-book").text("Update").attr("data-button",'update');
 
             $.ajax({
                 type: 'GET',
@@ -536,9 +541,17 @@
             $this.find('i').addClass(loader).removeClass(cls)
             var formId = "#add-book-form";
             const formAction = $this.attr('data-action');
+            var button = $this.attr('data-button');
 
             $("#add-book-form").attr('data-action', formAction)
 
+
+            if(button == 'add'){
+                $this.text("Creating..")
+            }else{
+                $this.text("Updating..")
+
+            }
 
             $.ajax({
                 type: 'POST',
@@ -546,7 +559,17 @@
                 data: $("#add-book-form").serialize(), // Serialize the form data
                 success: function(response) {
                     $this.find('i').addClass(cls).removeClass(loader)
+                    setTimeout(() => {
+                        if(button == 'add'){
+                            $this.text("Create")
+                        }else{
+                            $this.text("Update")
+
+                        }
+                    }, 800);
+
                     toastr.success("Book submitted successfully!");
+
                 },
                 error: function(xhr, status, error) {
 
@@ -555,7 +578,8 @@
             });
 
         })
-        $(".submit-this").click(function(e) {
+        $(document).on("click",".submit-this",function(e){
+
             var cls = 'fa-solid fa-check';
             var loader = 'fa fa-spinner fa-spin';
             e.preventDefault();
@@ -646,11 +670,20 @@
             const modal = document.getElementById("myModal");
 
             const text = event.target.closest('.text-container'); // Get the text content
+
             const dataText = text.getAttribute('data-text');
-            console.log("dataText", text)
+
             document.getElementById("modalText").innerHTML = dataText; // Set text in modal
         }
 
+        // $(".view-more").click(function(){
+        //     var tar = $(this).attr('data-target');
+        //     var html = $(tar).html();
+
+        //     $("#myModal").find('.modal-footer').html(html)
+
+        //     console.log("html",html)
+        // })
 
 
         // Close the modal when the user clicks anywhere outside of the modal content
@@ -693,5 +726,9 @@
 
         // Call this function to open the popup
         openPopup();
+
+
+
+
     </script>
 @endsection

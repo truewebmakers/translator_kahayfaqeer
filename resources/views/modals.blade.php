@@ -91,7 +91,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="text-end">
-                                    <button class="btn btn-success me-3 submit-add-book"> {{ isset($book) ? 'Update' : 'Create' }}<i class="fa-solid fa-badge-check"></i></button>
+                                    <button class="btn btn-success me-3 submit-add-book"> {{ isset($book) ? 'Update' : 'Create' }}<i class="fa-solid fa-check"></i></button>
 
                                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
                                 </div>
@@ -125,6 +125,10 @@
                 <div class="modal-toggle-wrapper" id="modalText">
 
                 </div>
+            </div>
+
+             <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
