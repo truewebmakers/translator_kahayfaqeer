@@ -101,9 +101,9 @@
             font-weight: 100 !important;
         }
 
-     .modal-footer form {
-    width: 100%;
-}
+        .modal-footer form {
+            width: 100%;
+        }
     </style>
     @php
         use App\Helpers\UserHelper;
@@ -138,15 +138,33 @@
                                             <th>Pageno</th>
                                             <th>Sentence</th>
 
-                                            @if(Auth::user()->department == 'seed')  <th>Supporting Language</th> @endif
-                                            @if(Auth::user()->department == 'seed')  <th>Urdu</th>  @endif
-                                            @if(Auth::user()->department == 'translation' && Auth::user()->language == 'english')  <th>English</th>  @endif
-                                            @if(Auth::user()->department == 'translation' && Auth::user()->language == 'arabic')  <th>Arabic</th>  @endif
-                                            @if(Auth::user()->department == 'translation' && Auth::user()->language == 'hindi')  <th>Hindi</th>  @endif
-                                            @if(Auth::user()->department == 'translation' && Auth::user()->language == 'indonesian')  <th>Indonesian</th>  @endif
-                                            @if(Auth::user()->department == 'translation' && Auth::user()->language == 'bengali')  <th>Bengali</th>  @endif
-                                            @if(Auth::user()->department == 'translation' && Auth::user()->language == 'persian')  <th>Persian</th>  @endif
-                                            @if(Auth::user()->department == 'translation' && Auth::user()->language == 'turkish')  <th>Turkish</th>  @endif
+                                            @if (Auth::user()->department == 'seed')
+                                                <th>Supporting Language</th>
+                                            @endif
+                                            @if (Auth::user()->department == 'seed')
+                                                <th>Urdu</th>
+                                            @endif
+                                            @if (Auth::user()->department == 'translation' && Auth::user()->language == 'english')
+                                                <th>English</th>
+                                            @endif
+                                            @if (Auth::user()->department == 'translation' && Auth::user()->language == 'arabic')
+                                                <th>Arabic</th>
+                                            @endif
+                                            @if (Auth::user()->department == 'translation' && Auth::user()->language == 'hindi')
+                                                <th>Hindi</th>
+                                            @endif
+                                            @if (Auth::user()->department == 'translation' && Auth::user()->language == 'indonesian')
+                                                <th>Indonesian</th>
+                                            @endif
+                                            @if (Auth::user()->department == 'translation' && Auth::user()->language == 'bengali')
+                                                <th>Bengali</th>
+                                            @endif
+                                            @if (Auth::user()->department == 'translation' && Auth::user()->language == 'persian')
+                                                <th>Persian</th>
+                                            @endif
+                                            @if (Auth::user()->department == 'translation' && Auth::user()->language == 'turkish')
+                                                <th>Turkish</th>
+                                            @endif
 
 
 
@@ -175,129 +193,132 @@
                                                 <td>{{ $listing->page_number }}</td>
                                                 <td>{{ $listing->sentence }}</td>
 
-                                                @if(Auth::user()->department == 'seed')
-                                                <td class="text-custom">
+                                                @if (Auth::user()->department == 'seed')
+                                                    <td class="text-custom">
 
-                                                    <div class="text-container" data-text="{{ $listing->text }}">
-                                                        {!! substr_replace($listing->text, '...', 100) !!}
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
+                                                        <div class="text-container" data-text="{{ $listing->text }}">
+                                                            {!! substr_replace($listing->text, '...', 100) !!}
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
 
-                                                </td>
+                                                    </td>
                                                 @endif
-                                                @if(Auth::user()->department == 'seed')
-
-                                                <td class="text-custom">
-                                                    <div class="text-container" data-text="{{ $listing->supporting_language }}">
-                                                        <span class="text"> {!! substr_replace($listing->supporting_language, '...', 100) !!} </span>
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
+                                                @if (Auth::user()->department == 'seed')
+                                                    <td class="text-custom">
+                                                        <div class="text-container"
+                                                            data-text="{{ $listing->supporting_language }}">
+                                                            <span class="text"> {!! substr_replace($listing->supporting_language, '...', 100) !!} </span>
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
                                                 @endif
-                                                @if(Auth::user()->department == 'translation' && Auth::user()->language == 'english')
-                                                <td class="text-custom">
-                                                    <div class="text-container" data-text="{{ $listing->urdu }}">
-                                                        <span class="text"> {!! substr_replace($listing->urdu, '...', 100) !!} </span>
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
+                                                @if (Auth::user()->department == 'translation' && Auth::user()->language == 'english')
+                                                    <td class="text-custom">
+                                                        <div class="text-container" data-text="{{ $listing->urdu }}">
+                                                            <span class="text"> {!! substr_replace($listing->urdu, '...', 100) !!} </span>
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
                                                 @endif
-                                                @if(Auth::user()->department == 'translation' && Auth::user()->language == 'english')
-
-                                                <td class="text-custom">
-                                                    <div class="text-container" data-text="{{ $listing->english }}">
-                                                        <span class="text"> {!! substr_replace($listing->english, '...', 100) !!} </span>
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
+                                                @if (Auth::user()->department == 'translation' && Auth::user()->language == 'english')
+                                                    <td class="text-custom">
+                                                        <div class="text-container" data-text="{{ $listing->english }}">
+                                                            <span class="text"> {!! substr_replace($listing->english, '...', 100) !!} </span>
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                @endif
-
-                                                @if(Auth::user()->department == 'translation' && Auth::user()->language == 'arabic')
-
-                                                <td class="text-custom">
-                                                    <div class="text-container" data-text="{{ $listing->arabic }}">
-                                                        <span class="text"> {!! substr_replace($listing->arabic, '...', 100) !!} </span>
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
                                                 @endif
 
-                                                @if(Auth::user()->department == 'translation' && Auth::user()->language == 'hindi')
-
-                                                <td class="text-custom">
-                                                    <div class="text-container" data-text="{{ $listing->hindi }}">
-                                                        <span class="text"> {!! substr_replace($listing->hindi, '...', 100) !!} </span>
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
+                                                @if (Auth::user()->department == 'translation' && Auth::user()->language == 'arabic')
+                                                    <td class="text-custom">
+                                                        <div class="text-container" data-text="{{ $listing->arabic }}">
+                                                            <span class="text"> {!! substr_replace($listing->arabic, '...', 100) !!} </span>
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
                                                 @endif
 
-                                                @if(Auth::user()->department == 'translation' && Auth::user()->language == 'indonesian')
-
-                                                <td class="text-custom">
-                                                    <div class="text-container" data-text="{{ $listing->indonesian }}">
-                                                        <span class="text"> {!! substr_replace($listing->indonesian, '...', 100) !!} </span>
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
+                                                @if (Auth::user()->department == 'translation' && Auth::user()->language == 'hindi')
+                                                    <td class="text-custom">
+                                                        <div class="text-container" data-text="{{ $listing->hindi }}">
+                                                            <span class="text"> {!! substr_replace($listing->hindi, '...', 100) !!} </span>
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
                                                 @endif
-                                                @if(Auth::user()->department == 'translation' && Auth::user()->language == 'bengali')
 
-                                                <td class="text-custom">
-                                                    <div class="text-container" data-text="{{ $listing->bengali }}">
-                                                        <span class="text"> {!! substr_replace($listing->bengali, '...', 100) !!} </span>
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
+                                                @if (Auth::user()->department == 'translation' && Auth::user()->language == 'indonesian')
+                                                    <td class="text-custom">
+                                                        <div class="text-container" data-text="{{ $listing->indonesian }}">
+                                                            <span class="text"> {!! substr_replace($listing->indonesian, '...', 100) !!} </span>
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
                                                 @endif
-                                                @if(Auth::user()->department == 'translation' && Auth::user()->language == 'persian')
-
-                                                <td class="text-custom">
-                                                    <div class="text-container" data-text="{{ $listing->persian }}">
-                                                        <span class="text"> {!! substr_replace($listing->persian, '...', 100) !!} </span>
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                              <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
+                                                @if (Auth::user()->department == 'translation' && Auth::user()->language == 'bengali')
+                                                    <td class="text-custom">
+                                                        <div class="text-container" data-text="{{ $listing->bengali }}">
+                                                            <span class="text"> {!! substr_replace($listing->bengali, '...', 100) !!} </span>
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
                                                 @endif
-                                                @if(Auth::user()->department == 'translation' && Auth::user()->language == 'turkish')
-
-                                                <td class="text-custom">
-                                                    <div class="text-container" data-text="{{ $listing->turkish }}">
-                                                        <span class="text"> {!! substr_replace($listing->turkish, '...', 100) !!} </span>
-                                                        <div class="overlay" onclick="toggleModal(event)">
-                                                            <i class="fa-solid fa-magnifying-glass view-more" data-target="#commentForm{{$listing->id}}" data-bs-toggle="modal"
-                                                                data-bs-target="#myModal"></i>
+                                                @if (Auth::user()->department == 'translation' && Auth::user()->language == 'persian')
+                                                    <td class="text-custom">
+                                                        <div class="text-container" data-text="{{ $listing->persian }}">
+                                                            <span class="text"> {!! substr_replace($listing->persian, '...', 100) !!} </span>
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
+                                                @endif
+                                                @if (Auth::user()->department == 'translation' && Auth::user()->language == 'turkish')
+                                                    <td class="text-custom">
+                                                        <div class="text-container" data-text="{{ $listing->turkish }}">
+                                                            <span class="text"> {!! substr_replace($listing->turkish, '...', 100) !!} </span>
+                                                            <div class="overlay" onclick="toggleModal(event)">
+                                                                <i class="fa-solid fa-magnifying-glass view-more"
+                                                                    data-target="#commentForm{{ $listing->id }}"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 @endif
 
 
@@ -308,7 +329,8 @@
                                                         $listing->comment->current_user_level,
                                                     );
                                                 @endphp
-                                                <td class="comment-store" style="width:20%" id="commentForm{{$listing->id}}">
+                                                <td class="comment-store" style="width:20%"
+                                                    id="commentForm{{ $listing->id }}">
                                                     @if (UserHelper::userCan(['create_comment', 'update_comment', 'read_comment'], false) && $userLevel == true)
                                                         @if (!empty($listing->comment))
                                                             <form id="form-{{ $listing->id }}"
@@ -326,7 +348,8 @@
                                                                     <button class="badge badge-success mt-1 submit-this"
                                                                         type="button"
                                                                         data-form="#form-{{ $listing->id }}"
-                                                                        style="float: inline-end"><i  class="fa-solid fa-check"></i></button>
+                                                                        style="float: inline-end"><i
+                                                                            class="fa-solid fa-check"></i></button>
                                                                 @endif
                                                             </form>
                                                         @else
@@ -341,7 +364,8 @@
                                                                 <textarea class="form-control" name="comment"> </textarea>
 
                                                                 @if (UserHelper::userCan(['create_comment', 'update_comment']) && $userLevel == true)
-                                                                    <button class="badge badge-success mt-1" type="button"
+                                                                    <button class="badge badge-success mt-1"
+                                                                        type="button"
                                                                         data-form="#form-{{ $listing->id }}"
                                                                         placeholder="comment" style="float: inline-end"><i
                                                                             class="fa-solid fa-check"></i></button>
@@ -395,7 +419,8 @@
                                                 </td>
                                                 <td class="audio-container" style="width:20%">
                                                     <audio controls>
-                                                        <source src="https://{{ $listing->urdu_audio }}" type="audio/mp3">
+                                                        <source src="https://{{ $listing->urdu_audio }}"
+                                                            type="audio/mp3">
                                                     </audio>
                                                 </td>
                                                 <td class="text-end">
@@ -495,7 +520,7 @@
             const formAction = $this.attr('data-action');
             $("#add-book-form").attr('action', formAction)
             $("#add-book-form-md").find('.modal-title').text("Add Book")
-            $(".submit-add-book").text("Create").attr("data-button",'add');
+            $(".submit-add-book").text("Create").attr("data-button", 'add');
         })
         $(".edit-listing").click(function() {
             $this = $(this);
@@ -505,7 +530,7 @@
             var urll = "{{ route('book.edit', ':bookId') }}".replace(':bookId', listId);
             $("#add-book-form").attr('action', formAction)
 
-            $(".submit-add-book").text("Update").attr("data-button",'update');
+            $(".submit-add-book").text("Update").attr("data-button", 'update');
 
             $.ajax({
                 type: 'GET',
@@ -531,6 +556,8 @@
             });
         })
 
+        // Assuming you have a form with id "add-book-form" that includes a file input
+
 
 
         $(".submit-add-book").click(function(e) {
@@ -546,39 +573,62 @@
             $("#add-book-form").attr('data-action', formAction)
 
 
-            if(button == 'add'){
+            if (button == 'add') {
                 $this.text("Creating..")
-            }else{
+            } else {
                 $this.text("Updating..")
 
             }
+            var formData = new FormData($("#add-book-form")); // Create a FormData object from the form
 
             $.ajax({
                 type: 'POST',
-                url: $("#add-book-form").attr('action'),
-                data: $("#add-book-form").serialize(), // Serialize the form data
+                url:  url: $("#add-book-form").attr('action'),,
+                data: formData,
+                processData: false, // Prevent jQuery from automatically processing the data
+                contentType: false, // Prevent jQuery from setting the content type
                 success: function(response) {
-                    $this.find('i').addClass(cls).removeClass(loader)
+                    $this.find('i').addClass(cls).removeClass(loader);
                     setTimeout(() => {
-                        if(button == 'add'){
-                            $this.text("Create")
-                        }else{
-                            $this.text("Update")
-
+                        if (button === 'add') {
+                            $this.text("Create");
+                        } else {
+                            $this.text("Update");
                         }
                     }, 800);
 
                     toastr.success("Book submitted successfully!");
-
                 },
                 error: function(xhr, status, error) {
-
                     toastr.error('An error occurred: ' + xhr.responseText);
                 }
             });
+            // $.ajax({
+            //     type: 'POST',
+            //     url: $("#add-book-form").attr('action'),
+            //     data: $("#add-book-form").serialize(), // Serialize the form data
+            //     success: function(response) {
+            //         $this.find('i').addClass(cls).removeClass(loader)
+            //         setTimeout(() => {
+            //             if(button == 'add'){
+            //                 $this.text("Create")
+            //             }else{
+            //                 $this.text("Update")
+
+            //             }
+            //         }, 800);
+
+            //         toastr.success("Book submitted successfully!");
+
+            //     },
+            //     error: function(xhr, status, error) {
+
+            //         toastr.error('An error occurred: ' + xhr.responseText);
+            //     }
+            // });
 
         })
-        $(document).on("click",".submit-this",function(e){
+        $(document).on("click", ".submit-this", function(e) {
 
             var cls = 'fa-solid fa-check';
             var loader = 'fa fa-spinner fa-spin';
@@ -726,9 +776,5 @@
 
         // Call this function to open the popup
         openPopup();
-
-
-
-
     </script>
 @endsection

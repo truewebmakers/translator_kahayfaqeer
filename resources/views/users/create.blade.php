@@ -94,7 +94,7 @@
                                                      @if (isset($user) && $val == $user->department)
                                                         selected
                                                      @endif
-                                                     value="{{ $val }}">{{ $seed }}</option>
+                                                     value="{{ $val }}" >{{ $seed }}</option>
                                             @endforeach
 
                                         </select>
@@ -125,7 +125,7 @@
                                                      @if (isset($user) && $val == $user->language)
                                                         selected
                                                      @endif
-                                                     value="{{ $val }}">{{ $lang }}</option>
+                                                     value="{{ $val }}" class="{{$val}}-ln" >{{ $lang }}</option>
                                             @endforeach
 
                                         </select>
@@ -142,7 +142,7 @@
                                                      @if (isset($user) && $val == $user->second_language)
                                                         selected
                                                      @endif
-                                                     value="{{ $val }}">{{ $lang }}</option>
+                                                     value="{{ $val }}" class="{{$val}}">{{ $lang }}</option>
                                             @endforeach
 
                                         </select>
@@ -175,6 +175,8 @@
             $("#lang-update2").parents('.input-select').fadeIn();
         }
     })
+
+
 
 </script>
 @endsection
