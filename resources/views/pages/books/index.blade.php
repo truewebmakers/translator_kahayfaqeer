@@ -442,6 +442,7 @@
                     }
 
                     $("textarea[name='supporting_language']").val(data.supporting_language)
+                    $("#audio-data").find('source').attr('src',data.urdu_audio)
                     $("input[name='urdu_audio']").val(data.urdu_audio)
 
                 },
