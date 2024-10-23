@@ -397,6 +397,7 @@
             $("#add-book-form").attr('action', formAction)
             $("#add-book-form-md").find('.modal-title').text("Add Book")
             $(".submit-add-book").text("Create").attr("data-button", 'add');
+            $("#audio-data").hide()
         })
         $(".edit-listing").click(function() {
             $this = $(this);
@@ -442,7 +443,7 @@
                     }
 
                     $("textarea[name='supporting_language']").val(data.supporting_language)
-                    $("#audio-data").find('source').attr('src',data.urdu_audio)
+                    $("#audio-data").find('source').attr('src',data.urdu_audio).show()
                     $("input[name='urdu_audio']").val(data.urdu_audio)
 
                 },
