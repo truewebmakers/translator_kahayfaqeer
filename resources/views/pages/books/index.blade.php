@@ -449,7 +449,6 @@
 
                     $("#audio-data").find('source').attr('src',data.urdu_audio)
                     $("#audio-data").show()
-                    $("input[name='urdu_audio']").val(data.urdu_audio)
 
                 },
                 error: function(xhr, status, error) {
