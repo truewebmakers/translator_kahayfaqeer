@@ -14,8 +14,8 @@ class BookTranslationController extends Controller
 {
     //
     public function index(){
-        $booklistings = BookTranslation::with('comment')->get();
-       // echo "<pre>"; print_r($booklistings); die;
+        $booklistings = BookTranslation::with('comment','user')->get();
+    //    echo "<pre>"; print_r($booklistings); die;
         return view('pages.books.index',compact('booklistings'));
     }
 

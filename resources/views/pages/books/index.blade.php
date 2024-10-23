@@ -138,6 +138,7 @@
                                 <table class="table display table-bordernone" id="transaction" style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th>Created By</th>
                                             <th>Bookno</th>
                                             <th>Chapter</th>
                                             <th>Pageno</th>
@@ -154,13 +155,14 @@
                                     <tbody>
                                         @foreach ($booklistings as $listing)
                                             <tr>
+                                                <td> {{$listing->user->name}} {{$listing->user->user_level}}  P.l {{$listing->user->language}} S.l {{$listing->user->second_language}} </td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3">
                                                         {{-- <div class="flex-shrink-0"><img src="../assets/images/dashboard-1/icon/1.png" alt=""/></div> --}}
                                                         <div class="flex-grow-1">
-                                                            <a href="{{ route('book.create') }}">
-                                                                <h6>{{ $listing->book_number }} </h6>
-                                                            </a>
+
+                                                                <h6>{{ $listing->book_number }}</h6>
+
                                                             {{-- <p>Item Sold</p> --}}
                                                         </div>
                                                     </div>

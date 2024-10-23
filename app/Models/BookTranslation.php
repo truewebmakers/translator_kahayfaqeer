@@ -23,6 +23,10 @@ class BookTranslation extends Model
     }
 
     public function comment(){
-        return $this->hasOne(BookTranslationComments::class)->orderBy('created_at', 'desc');;
+        return $this->hasOne(BookTranslationComments::class)->orderBy('created_at', 'desc');
+    }
+
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
     }
 }
