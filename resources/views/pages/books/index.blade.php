@@ -127,9 +127,12 @@
                         <div class="card-header card-no-border pb-0">
 
 
-                            <h3>Books <button class="btn btn-outline-success btn-sm add-book"
+                            <h3>Books
+                                @if( UserHelper::userCan(['create_book_sentence', 'delete_book_sentence','read_book_sentence','update_book_sentence']))
+                                <button class="btn btn-outline-success btn-sm add-book"
                                     data-action="{{ route('book.store') }}" type="button" data-bs-toggle="modal"
                                     data-bs-target="#add-book-form-md">Add Book</button>
+                                @endif
                             </h3>
 
                         </div>
