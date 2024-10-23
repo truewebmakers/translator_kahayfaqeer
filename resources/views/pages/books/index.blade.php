@@ -5,6 +5,9 @@
             /* color: var(--dark); */
             font-weight: 100;
         }
+        audio#audio-data {
+    margin-top: 20px;
+}
 
         .badge-area span {
             width: 100%;
@@ -443,7 +446,9 @@
                     }
 
                     $("textarea[name='supporting_language']").val(data.supporting_language)
-                    $("#audio-data").find('source').attr('src',data.urdu_audio).show()
+
+                    $("#audio-data").find('source').attr('src',data.urdu_audio)
+                    $("#audio-data").show()
                     $("input[name='urdu_audio']").val(data.urdu_audio)
 
                 },
