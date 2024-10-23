@@ -5,9 +5,9 @@
             /* color: var(--dark); */
             font-weight: 100;
         }
-        audio#audio-data {
-    margin-top: 20px;
-}
+        div#audio-data {
+            margin-top: 20px;
+        }
 
         .badge-area span {
             width: 100%;
