@@ -447,8 +447,8 @@
 
                     $("textarea[name='supporting_language']").val(data.supporting_language)
 
-                    $("#audio-data").find('source').attr('src','https://'+data.urdu_audio)
-                    $("#audio-data").show()
+                    $("#audio-data").html(`<audio controls  ><source src="${'https://'+data.urdu_audio}" type="audio/mp3"></audio>`);
+
 
                 },
                 error: function(xhr, status, error) {

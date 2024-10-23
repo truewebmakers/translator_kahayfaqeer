@@ -80,10 +80,9 @@
                                         <input class="form-control" id="formFile" type="file"
                                             value="{{ isset($book) ? $book->urdu_audio : '' }}" name="urdu_audio">
                                     </div>
+                                    <div id="audio-data">
+                                    </div>
 
-                                        <audio controls style="display: none" id="audio-data">
-                                            <source src="" type="audio/mp3">
-                                        </audio>
 
                                 </div>
                             </div>
