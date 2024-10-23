@@ -12,6 +12,8 @@
                         <div class="card-header pb-0 card-no-border">
 
                             <div class="card-body">
+                                <a href="{{ route('users.create') }}" class="btn btn-outline-success btn-sm">Add User</a>
+
 
                                 <div class="table-responsive">
                                     <div id="basic-9_wrapper" class="dataTables_wrapper">

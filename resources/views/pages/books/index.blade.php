@@ -129,7 +129,8 @@
 
                             <h3>Books <button class="btn btn-outline-success btn-sm add-book"
                                     data-action="{{ route('book.store') }}" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#add-book-form-md">Add Book</button></h3>
+                                    data-bs-target="#add-book-form-md">Add Book</button>
+                            </h3>
 
                         </div>
                         <div class="card-body transaction-history pt-0">
@@ -142,6 +143,7 @@
                                             <th>Pageno</th>
                                             <th>Sentence</th>
                                             <th>Paragraph</th>
+                                            <th>Sencond Supporting</th>
                                             <th>Comment</th>
                                             <th class="text-center">Book Status</th>
                                             <th class="text-center">Audio</th>
@@ -167,18 +169,27 @@
                                                 <td>{{ $listing->page_number }}</td>
                                                 <td>{{ $listing->sentence }}</td>
 
-                                                    <td class="text-custom">
-
-                                                        <div class="text-container" data-text="{{ $listing->text }}">
-                                                            {!! substr_replace($listing->text, '...', 100) !!}
-                                                            <div class="overlay" onclick="toggleModal(event)">
-                                                                <i class="fa-solid fa-magnifying-glass view-more"
-                                                                    data-target="#commentForm{{ $listing->id }}"
-                                                                    data-bs-toggle="modal" data-bs-target="#myModal"></i>
-                                                            </div>
+                                                <td class="text-custom">
+                                                    <div class="text-container" data-text="{{ UserHelper::getListingContent($listing, Auth::user()->language) }}">
+                                                        {!! substr_replace(UserHelper::getListingContent($listing, Auth::user()->language), '...', 100) !!}
+                                                        <div class="overlay" onclick="toggleModal(event)">
+                                                            <i class="fa-solid fa-magnifying-glass view-more"
+                                                                data-target="#commentForm{{ $listing->id }}"
+                                                                data-bs-toggle="modal" data-bs-target="#myModal"></i>
                                                         </div>
-                                                    </td>
+                                                    </div>
+                                                </td>
 
+                                                <td class="text-custom">
+                                                    <div class="text-container" data-text="{{ UserHelper::getListingContent($listing, Auth::user()->supporting_language) }}">
+                                                        {!! substr_replace(UserHelper::getListingContent($listing, Auth::user()->supporting_language), '...', 100) !!}
+                                                        <div class="overlay" onclick="toggleModal(event)">
+                                                            <i class="fa-solid fa-magnifying-glass view-more"
+                                                                data-target="#commentForm{{ $listing->id }}"
+                                                                data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
 
                                                 @php
                                                     $userLevel = UserHelper::LastUserLevel(
@@ -460,29 +471,7 @@
                     toastr.error('An error occurred: ' + xhr.responseText);
                 }
             });
-            // $.ajax({
-            //     type: 'POST',
-            //     url: $("#add-book-form").attr('action'),
-            //     data: $("#add-book-form").serialize(), // Serialize the form data
-            //     success: function(response) {
-            //         $this.find('i').addClass(cls).removeClass(loader)
-            //         setTimeout(() => {
-            //             if(button == 'add'){
-            //                 $this.text("Create")
-            //             }else{
-            //                 $this.text("Update")
 
-            //             }
-            //         }, 800);
-
-            //         toastr.success("Book submitted successfully!");
-
-            //     },
-            //     error: function(xhr, status, error) {
-
-            //         toastr.error('An error occurred: ' + xhr.responseText);
-            //     }
-            // });
 
         })
         $(document).on("click", ".submit-this", function(e) {

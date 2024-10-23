@@ -38,6 +38,30 @@ class UserHelper
         return false;
 
     }
+    public static function getListingContent($listing, $language) {
+        switch($language) {
+            case 'urdu':
+                return $listing->urdu;
+            case 'english':
+                return $listing->english;
+            case 'arabic':
+                return $listing->arabic;
+            case 'hindi':
+                return $listing->hindi;
+            case 'indonesian':
+                return $listing->indonesian;
+            case 'bengali':
+                return $listing->bengali;
+            case 'persian':
+                return $listing->persian;
+            case 'turkish':
+                return $listing->turkish;
+            default:
+                return $listing->english;
+        }
+    }
+
+
 
 }
 
