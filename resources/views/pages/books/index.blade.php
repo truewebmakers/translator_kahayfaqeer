@@ -342,6 +342,7 @@
                                                         <button type="button"
                                                             data-action="{{ route('book.update', $listing->id) }}"
                                                             class="btn-primary btn-sm edit-listing"
+                                                            data-lang="{{Auth::user()->language}}"
                                                             data-listId ="{{ $listing->id }}" data-bs-toggle="modal"
                                                             data-bs-target="#add-book-form-md">
                                                             <i class="fa-solid fa-pencil "></i>
@@ -386,7 +387,9 @@
 @endsection
 
 @section('page_script')
+
     <script>
+        var userLang =
         $(".add-book").click(function() {
             $this = $(this);
             $("#add-book-form")[0].reset()
@@ -397,6 +400,7 @@
         })
         $(".edit-listing").click(function() {
             $this = $(this);
+            var lang = $this.attr('data-lang');
             const listId = $this.attr('data-listId');
             const formAction = $this.attr('data-action');
             $("#add-book-form-md").find('.modal-title').text("Update Book")
@@ -417,7 +421,26 @@
                     $("input[name='chapter']").val(data.chapter)
                     $("input[name='page_number']").val(data.page_number)
                     $("input[name='sentence']").val(data.chapter)
-                    $("textarea[name='text']").val(data.text)
+                    if(lang == 'urdu'){
+                        $("textarea[name='text']").val(data.urdu)
+                    }else if(lang == 'hindi'){
+                        $("textarea[name='text']").val(data.arabic)
+                    }else if(lang == 'indonesian'){
+                        $("textarea[name='text']").val(data.indonesian)
+                    }else if(lang == 'bengali'){
+                        $("textarea[name='text']").val(data.bengali)
+                    }else if(lang == 'persian'){
+                        $("textarea[name='text']").val(data.persian)
+                    }else if(lang == 'turkish'){
+                        $("textarea[name='text']").val(data.turkish)
+                    }else if(lang == 'english'){
+                        $("textarea[name='text']").val(data.english)
+                    }else if(lang == 'arabic'){
+                        $("textarea[name='text']").val(data.arabic)
+                    }else{
+                        $("textarea[name='text']").val(data.text)
+                    }
+
                     $("textarea[name='supporting_language']").val(data.supporting_language)
                     $("input[name='urdu_audio']").val(data.urdu_audio)
 
