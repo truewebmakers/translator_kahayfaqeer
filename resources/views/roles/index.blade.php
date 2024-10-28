@@ -36,13 +36,13 @@
                                                                 </a>
                                                             </li>
                                                             <li class="delete">
-                                                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display:inline;">
+                                                                {{-- <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display:inline;">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" style="border: none; background: none; cursor: pointer;">
                                                                         <i class="icon-trash"></i>
                                                                     </button>
-                                                                </form>
+                                                                </form> --}}
                                                             </li>
                                                         </ul>
                                                     </td>
