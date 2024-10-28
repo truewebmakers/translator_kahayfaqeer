@@ -90,7 +90,7 @@
         }
 
         td.audio-container audio {
-            width: 66%;
+            width: 100%;
         }
 
         .status-update {
