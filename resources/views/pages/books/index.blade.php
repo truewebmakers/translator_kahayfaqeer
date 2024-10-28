@@ -150,7 +150,7 @@
                                             <th>Pageno</th>
                                             <th>Sentence</th>
                                             <th>Paragraph</th>
-                                            <th>Sencond Supporting</th>
+                                            <th>Second Supporting</th>
                                             <th>Comment</th>
                                             <th class="text-center">Book Status</th>
                                             <th class="text-center">Audio</th>
