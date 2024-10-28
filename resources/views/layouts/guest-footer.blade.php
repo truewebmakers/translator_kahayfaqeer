@@ -13,7 +13,7 @@
   <script src="{{ asset('assets/js/alert.js')}}"></script>
 
 
-  <script src="{{ asset('assets/js/password.js')}}"></script>
+  {{-- <script src="{{ asset('assets/js/password.js')}}"></script> --}}
   <!-- custom script -->
   <script src="{{ asset('assets/js/script.js')}}"></script>
 
