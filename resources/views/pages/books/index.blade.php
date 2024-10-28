@@ -236,7 +236,7 @@
                                                                 <input type="hidden" name="book_translation_id"
                                                                     value="{{ $listing->id }}">
                                                                 <input type="hidden" name="type" value="comment">
-                                                                <textarea placeholder="write you commment here" class="form-control" name="comment"> </textarea>
+                                                                <textarea placeholder="write you commment here" class="form-control" name="comment"></textarea>
 
                                                                 @if (UserHelper::userCan(['create_comment', 'update_comment']) && $userLevel == true)
                                                                     <button class="badge badge-success mt-1"
@@ -502,7 +502,8 @@
                     toastr.success("Book submitted successfully!");
                 },
                 error: function(xhr, status, error) {
-                    toastr.error('An error occurred: ' + xhr.responseText);
+
+                    toastr.error('An error occurred: ' +error);
                 }
             });
 
