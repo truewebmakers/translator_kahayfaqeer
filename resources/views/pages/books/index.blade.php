@@ -161,7 +161,7 @@
                                     <tbody>
                                         @foreach ($booklistings as $listing)
                                             <tr>
-                                                <td> {{$listing->user->name}} {{$listing->user->user_level}}  P.l {{$listing->user->language}} S.l {{$listing->user->second_language}} </td>
+                                                <td> {{ $listing->user->name }} </td>
                                                 <td>
                                                     <div class="d-flex align-items-center gap-3">
                                                         {{-- <div class="flex-shrink-0"><img src="../assets/images/dashboard-1/icon/1.png" alt=""/></div> --}}
