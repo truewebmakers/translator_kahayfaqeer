@@ -194,6 +194,7 @@ class BookTranslationController extends Controller
 
     public function delete($id)
     {
+        BookTranslationComments::where(['book_translation_id' => $id])->delete();
         BookTranslation::find($id)->delete();
         return redirect()->back()->with('success', 'deleted successfully');
     }
