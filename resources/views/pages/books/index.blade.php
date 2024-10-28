@@ -217,7 +217,7 @@
                                                                 <input type="hidden" name="book_translation_id"
                                                                     value="{{ $listing->id }}">
                                                                 <input type="hidden" name="type" value="comment">
-                                                                <textarea class="form-control" cols="10" name="comment">{{ $listing->comment->comment }}</textarea>
+                                                                <textarea class="form-control" placeholder="write you commment here" cols="10" name="comment">{{ $listing->comment->comment }}</textarea>
 
                                                                 @if (UserHelper::userCan(['create_comment', 'update_comment']))
                                                                     <button class="badge badge-success mt-1 submit-this"
@@ -236,7 +236,7 @@
                                                                 <input type="hidden" name="book_translation_id"
                                                                     value="{{ $listing->id }}">
                                                                 <input type="hidden" name="type" value="comment">
-                                                                <textarea class="form-control" name="comment"> </textarea>
+                                                                <textarea placeholder="write you commment here" class="form-control" name="comment"> </textarea>
 
                                                                 @if (UserHelper::userCan(['create_comment', 'update_comment']) && $userLevel == true)
                                                                     <button class="badge badge-success mt-1"
