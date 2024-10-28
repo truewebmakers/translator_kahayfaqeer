@@ -63,3 +63,8 @@
 
     </div>
 @endsection
+
+
+@section('page-script')
+
+@endsection
