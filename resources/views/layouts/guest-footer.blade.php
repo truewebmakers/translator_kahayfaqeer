@@ -18,7 +18,7 @@
   <script src="{{ asset('assets/js/script.js')}}"></script>
 
   <script>
-    document.title = 'User List';
+    document.title = 'User Login Area';
     document.addEventListener("DOMContentLoaded", function() {
     var showHideElements = document.querySelectorAll(".show-hide");
     var passwordInput = document.querySelector('input[name="password"]');
