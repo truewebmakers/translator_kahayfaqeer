@@ -81,5 +81,11 @@
         @section('page-script')
             <script>
                 document.title = 'User List';
+
+                $(".show-hide").click(function(){
+                    $this = $(this);
+                    alert(1)
+                    // $("name['password']").atrr('type','text')
+                })
             </script>
         @endsection
