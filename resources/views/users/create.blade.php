@@ -48,7 +48,7 @@
                                 </div>
                                <div class="col-md-6">
                                     <div class="input-group">
-                                        <label class="form-label" for="name">confirm-password</label>
+                                        <label class="form-label" for="name">Confirm Password</label>
 
                                         <input type="password" name="confirm-password" placeholder="Confirm Password" class="form-control">
                                    </div>
