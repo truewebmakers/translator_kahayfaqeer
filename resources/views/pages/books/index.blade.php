@@ -265,7 +265,13 @@
 
                                                     @if ($listing->comment && $userLevel == true)
                                                         <div class="card-heade">
-                                                            <select class="form-select status-update"
+                                                            <select class="form-select
+                                                                  @if (UserHelper::userCan(['create_comment', 'update_comment']) && $userLevel == true)
+
+                                                                    status-update
+                                                                    @endif
+
+                                                            "
                                                                 data-bookid="{{ $listing->comment->id }}"
                                                                 style="width: 80px">
                                                                 @foreach ($statusArr as $val => $status)
